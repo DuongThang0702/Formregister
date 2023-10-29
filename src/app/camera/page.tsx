@@ -10,8 +10,8 @@ import { Routes } from "@/utils/path";
 import button from "@/styles/components/_button.module.scss";
 
 const videoConstraints = {
-  width: 420,
-  height: 800,
+  width: 500,
+  height: 650,
   facingMode: "user",
 };
 
@@ -37,9 +37,7 @@ const Page: FC = ({}) => {
         <Webcam
           ref={webRef}
           audio={false}
-          height={700}
           screenshotFormat="image/jpeg"
-          width={420}
           videoConstraints={videoConstraints}
           mirrored={true}
         />

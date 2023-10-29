@@ -4,12 +4,13 @@
 @include respond(phone) {
   .container {
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     overflow: hidden;
     background-color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     .header {
       background-color: transparent;
       width: 100%;
@@ -22,12 +23,18 @@
     }
     .container_button {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: end;
+      justify-content: end;
+      position: absolute;
+      bottom: 0;
     }
     .camera {
+      position: fixed;
       width: 100%;
-      transform: translateX(-1rem);
+      height: 80%;
+      top: 8rem;
+      left: -2rem;
+      right: 0;
     }
   }
 }
