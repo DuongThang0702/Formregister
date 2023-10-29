@@ -11,15 +11,13 @@ import { Routes } from "@/utils/path";
 const videoConstraints = {
   width: 390,
   height: 700,
-  facingMode: "user",
+  facingMode: { exact: "environment" },
 };
 
 const Page: FC = ({}) => {
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
   const [img, setImage] = useState<string | null>(null);
-
-  console.log(img);
 
   return (
     <div className={style.container}>
