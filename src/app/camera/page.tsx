@@ -18,7 +18,7 @@ const Page: FC = ({}) => {
     if (Image) setImage(Image);
   };
   let videoConstraints = {
-    facingMode: { exact: "environment" },
+    facingMode: "environment",
     width: 0,
     height: 0,
   };
@@ -28,13 +28,13 @@ const Page: FC = ({}) => {
         ? document.documentElement
         : document.body;
     videoConstraints = {
-      facingMode: { exact: "environment" },
+      facingMode: "environment",
       width: elem.clientWidth,
       height: elem.clientHeight,
     };
   } else {
     videoConstraints = {
-      facingMode: { exact: "environment" },
+      facingMode: "environment",
       width: 375,
       height: 650,
     };
