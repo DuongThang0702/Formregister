@@ -7,10 +7,11 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import { Routes } from "@/utils/path";
+import button from "@/styles/components/_button.module.scss";
 
 const videoConstraints = {
   width: 420,
-  height: 700,
+  height: 800,
   facingMode: "user",
 };
 
@@ -18,19 +19,38 @@ const Page: FC = ({}) => {
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
   const [img, setImage] = useState<string | null>(null);
+  const showImage = () => {
+    const Image = webRef.current?.getScreenshot();
+    if (Image) setImage(Image);
+  };
+  console.log(img);
 
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <FontAwesomeIcon icon={icon.faArrowLeftLong} />
+        <FontAwesomeIcon
+          icon={icon.faArrowLeftLong}
+          onClick={() => router.push(`${Routes.HOME_PAGE}`)}
+        />
       </div>
-      <Camera
-        height={600}
-        webRef={webRef}
-        videoConstraints={videoConstraints}
-        width={420}
-        setImage={setImage}
-      />
+      <div className={style.camera}>
+        <Webcam
+          ref={webRef}
+          audio={false}
+          height={800}
+          screenshotFormat="image/jpeg"
+          width={420}
+          videoConstraints={videoConstraints}
+          mirrored={true}
+        />
+      </div>
+      <div className={style.container_button}>
+        <FontAwesomeIcon
+          icon={icon.faCircle}
+          className={button.circleCameraButton}
+          onClick={() => showImage()}
+        />
+      </div>
     </div>
   );
 };

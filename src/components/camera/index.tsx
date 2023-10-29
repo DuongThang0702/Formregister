@@ -19,30 +19,9 @@ const Page: FC<Props> = ({
   height,
   setImage,
 }) => {
-  const showImage = () => {
-    const Image = webRef.current?.getScreenshot();
-    if (Image) setImage(Image);
-  };
   return (
     <>
-      <div className={style.camera}>
-        <Webcam
-          ref={webRef}
-          audio={false}
-          height={height}
-          screenshotFormat="image/jpeg"
-          width={width}
-          videoConstraints={videoConstraints}
-          mirrored={true}
-        />
-        <div className={style.container_button}>
-          <FontAwesomeIcon
-            icon={icon.faCircle}
-            className={button.circleCameraButton}
-            onClick={() => showImage()}
-          />
-        </div>
-      </div>
+      <div className={style.camera}></div>
     </>
   );
 };
