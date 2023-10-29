@@ -25,28 +25,30 @@ const Page: FC = ({}) => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
-        <FontAwesomeIcon
-          icon={icon.faArrowLeftLong}
-          onClick={() => router.push(`${Routes.HOME_PAGE}`)}
-        />
-      </div>
-      <div className={style.camera}>
-        <Webcam
-          ref={webRef}
-          audio={false}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-          mirrored={true}
-        />
-      </div>
-      <div className={style.container_button}>
-        <FontAwesomeIcon
-          icon={icon.faCircle}
-          className={button.circleCameraButton}
-          onClick={() => showImage()}
-        />
+    <div className={style.wapper}>
+      <div className={style.container}>
+        <div className={style.header}>
+          <FontAwesomeIcon
+            icon={icon.faArrowLeftLong}
+            onClick={() => router.push(`${Routes.HOME_PAGE}`)}
+          />
+        </div>
+        <div className={style.camera}>
+          <Webcam
+            ref={webRef}
+            audio={false}
+            screenshotFormat="image/jpeg"
+            videoConstraints={videoConstraints}
+            mirrored={true}
+          />
+        </div>
+        <div className={style.container_button}>
+          <FontAwesomeIcon
+            icon={icon.faCircle}
+            className={button.circleCameraButton}
+            onClick={() => showImage()}
+          />
+        </div>
       </div>
     </div>
   );
