@@ -35,7 +35,7 @@ const Page: FC<Props> = ({
           videoConstraints={videoConstraints}
           mirrored={true}
         />
-        <div>
+        <div className={style.container_button}>
           <FontAwesomeIcon
             icon={icon.faCircle}
             className={button.circleCameraButton}
