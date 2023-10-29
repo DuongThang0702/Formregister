@@ -11,7 +11,7 @@ import button from "@/styles/components/_button.module.scss";
 
 const videoConstraints = {
   width: 500,
-  height: 650,
+  height: 450,
   facingMode: "user",
 };
 
@@ -41,13 +41,13 @@ const Page: FC = ({}) => {
             videoConstraints={videoConstraints}
             mirrored={true}
           />
-        </div>
-        <div className={style.container_button}>
-          <FontAwesomeIcon
-            icon={icon.faCircle}
-            className={button.circleCameraButton}
-            onClick={() => showImage()}
-          />
+          <div className={style.container_button}>
+            <FontAwesomeIcon
+              icon={icon.faCircle}
+              className={button.circleCameraButton}
+              onClick={() => showImage()}
+            />
+          </div>
         </div>
       </div>
     </div>
