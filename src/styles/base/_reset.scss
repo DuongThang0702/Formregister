@@ -12,12 +12,11 @@ html {
     font-size: 56.25%;
   }
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 
-body {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
+// body {
+// }
 
 img {
   width: auto;
