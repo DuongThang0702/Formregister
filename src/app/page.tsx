@@ -1,9 +1,13 @@
+"use client";
 import { FC } from "react";
 import style from "@/styles/pages/_homepage.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
+import { useRouter } from "next/navigation";
+import { Routes } from "@/utils/path";
 
 const Page: FC = ({}) => {
+  const router = useRouter();
   return (
     <div className={style.container}>
       <div className={style.top}>
@@ -15,7 +19,7 @@ const Page: FC = ({}) => {
       </div>
       <div className={style.button}>
         <FontAwesomeIcon icon={icon.faCamera} className={style.icon} />
-        <p>Use Camera</p>
+        <p onClick={() => router.push(`/${Routes.CAMERA}`)}>Use Camera</p>
       </div>
       <div className={style.bottom}>
         <div className={style.container_bottom}>

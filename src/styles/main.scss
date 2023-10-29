@@ -4,4 +4,8 @@
 @import "./base/reset";
 @import "./base/typography";
 
+@import "./components/camera.module";
+@import "./components/button.module";
+
 @import "./pages/homepage.module";
+@import "./pages/camerapage.module";

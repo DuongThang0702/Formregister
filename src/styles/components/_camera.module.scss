@@ -1,0 +1,12 @@
+.camera {
+  width: 100%;
+  height: 90vh;
+  margin: auto;
+  .header {
+    background-color: red;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+  }
+}
