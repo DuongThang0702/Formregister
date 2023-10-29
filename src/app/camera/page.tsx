@@ -9,36 +9,36 @@ import icon from "@/utils/icon";
 import { Routes } from "@/utils/path";
 import button from "@/styles/components/_button.module.scss";
 
-const elem =
-  typeof window !== "undefined" &&
-  window.document &&
-  document.compatMode === "CSS1Compat"
-    ? document.documentElement
-    : document.body;
-
 const Page: FC = ({}) => {
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
   const [img, setImage] = useState<string | null>(null);
-
   const showImage = () => {
     const Image = webRef.current?.getScreenshot();
     if (Image) setImage(Image);
   };
-
-  const videoConstraints = {
+  let videoConstraints = {
     facingMode: "user",
-    width: elem.clientWidth,
-    height: elem.clientHeight,
+    width: 0,
+    height: 0,
   };
-  useEffect(() => {
+  if (typeof window !== "undefined") {
     const elem =
-      typeof window !== "undefined" &&
-      window.document &&
       document.compatMode === "CSS1Compat"
         ? document.documentElement
         : document.body;
-  }, []);
+    videoConstraints = {
+      facingMode: "user",
+      width: elem.clientWidth,
+      height: elem.clientHeight,
+    };
+  } else {
+    videoConstraints = {
+      facingMode: "user",
+      width: 375,
+      height: 650,
+    };
+  }
 
   return (
     <div className={style.container}>
