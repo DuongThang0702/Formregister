@@ -37,7 +37,7 @@ const Page: FC = ({}) => {
         <Webcam
           ref={webRef}
           audio={false}
-          height={800}
+          height={700}
           screenshotFormat="image/jpeg"
           width={420}
           videoConstraints={videoConstraints}
