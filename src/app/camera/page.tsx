@@ -23,7 +23,6 @@ const Page: FC = ({}) => {
     const Image = webRef.current?.getScreenshot();
     if (Image) setImage(Image);
   };
-  console.log(img);
 
   return (
     <div className={style.container}>
