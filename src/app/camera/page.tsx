@@ -56,7 +56,7 @@ const Page: FC = ({}) => {
           videoConstraints={videoConstraints}
           width={videoConstraints.width}
           height={videoConstraints.height - 100}
-          mirrored={true}
+          mirrored={false}
         />
         <div className={style.container_button}>
           <FontAwesomeIcon
