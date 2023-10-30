@@ -1,2 +1,2 @@
 export { default as Camera } from "./camera";
-export { GetInitialProps } from "./server/getSize";
+export { useWindowSize } from "./server/getSize";

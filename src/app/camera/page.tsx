@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import { Routes } from "@/utils/path";
 import button from "@/styles/components/_button.module.scss";
-import { useWindowSize } from "@/components/server/getSize";
+import { useWindowSize } from "@/components/";
 
 const Page: FC = ({}) => {
   const router = useRouter();
