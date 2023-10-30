@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import { Routes } from "@/utils/path";
 import button from "@/styles/components/_button.module.scss";
+import { useWindowSize } from "@/components/server/getSize";
 
 const Page: FC = ({}) => {
   const router = useRouter();
@@ -17,37 +18,17 @@ const Page: FC = ({}) => {
     const Image = webRef.current?.getScreenshot();
     if (Image) setImage(Image);
   };
+  const a = useWindowSize();
+  console.log(img);
+
   let videoConstraints = {
-    facingMode: "environment",
-    width: 0,
-    height: 0,
+    facingMode: "user",
+    width: a.width,
+    height: a.height,
   };
-  if (typeof window !== "undefined") {
-    const elem =
-      document.compatMode === "CSS1Compat"
-        ? document.documentElement
-        : document.body;
-    videoConstraints = {
-      facingMode: "environment",
-      width: elem.clientWidth,
-      height: elem.clientHeight,
-    };
-  } else {
-    videoConstraints = {
-      facingMode: "environment",
-      width: 375,
-      height: 650,
-    };
-  }
 
   return (
     <div className={style.container}>
-      <div className={style.header}>
-        <FontAwesomeIcon
-          icon={icon.faArrowLeftLong}
-          onClick={() => router.push(`${Routes.HOME_PAGE}`)}
-        />
-      </div>
       <div className={style.camera}>
         <Webcam
           ref={webRef}
@@ -55,13 +36,13 @@ const Page: FC = ({}) => {
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
           width={videoConstraints.width}
-          height={videoConstraints.height - 100}
+          height={videoConstraints.height}
           mirrored={false}
         />
         <div className={style.container_button}>
           <FontAwesomeIcon
             icon={icon.faCircle}
-            className={button.circleCameraButton}
+            className={style.icon}
             onClick={() => showImage()}
           />
         </div>

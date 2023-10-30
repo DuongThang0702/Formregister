@@ -1,91 +1,89 @@
 @import "../abstracts/variables";
 @import "../abstracts/mixins";
 
-@include respond(phone) {
-  .container {
-    display: flex;
-    flex-direction: column;
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  font-size: $size-base;
+  background-color: $main-color;
+  color: white;
+  position: relative;
+
+  .top {
     width: 100%;
-    height: 100vh;
-    font-size: $size-base;
-    background-color: $main-color;
-    color: white;
-    position: relative;
-
-    .top {
-      width: 100%;
-      height: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 4rem;
+    .icon {
+      width: 10rem;
+      height: 10rem;
+    }
+    .container_text {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-direction: column;
-      row-gap: 4rem;
-      .icon {
-        width: 10rem;
-        height: 10rem;
-      }
-      .container_text {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        p {
-          font-size: $size-4xl;
-          color: white;
-          font-weight: 600;
-        }
-        span {
-          font-size: 2.5rem;
-          font-style: bold;
-          font-weight: 700;
-        }
-      }
-    }
-
-    .button {
-      position: absolute;
-      background-color: $orange;
-      padding: 2rem 4rem;
-      border-radius: 4rem;
-      top: 50%;
-      left: 50%;
       align-items: center;
-      column-gap: 2rem;
-      transform: translateY(-50%) translateX(-50%);
-      display: flex;
-      .icon {
-        width: 2rem;
-        height: 2rem;
-      }
       p {
-        font-size: $size-2xl;
+        font-size: $size-4xl;
+        color: white;
         font-weight: 600;
-        cursor: pointer;
+      }
+      span {
+        font-size: 2.5rem;
+        font-style: bold;
+        font-weight: 700;
       }
     }
+  }
 
-    .bottom {
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      color: $main-color;
+  .button {
+    position: absolute;
+    background-color: $orange;
+    padding: 2rem 4rem;
+    border-radius: 4rem;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    column-gap: 2rem;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    .icon {
+      width: 2rem;
+      height: 2rem;
+    }
+    p {
+      font-size: $size-2xl;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  .bottom {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    color: $main-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container_bottom {
+      padding: 10rem 3rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      .container_bottom {
-        padding: 10rem 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        column-gap: 2rem;
-        .icon {
-          width: 6rem;
-          height: 6rem;
-        }
-        span {
-          font-size: $size-3xl;
-        }
+      flex-direction: row;
+      column-gap: 2rem;
+      .icon {
+        width: 6rem;
+        height: 6rem;
+      }
+      span {
+        font-size: $size-3xl;
       }
     }
   }

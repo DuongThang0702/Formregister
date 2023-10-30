@@ -18,12 +18,55 @@
     }
     .camera {
       position: relative;
-      width: 100%;
+      margin: auto;
       .container_button {
         position: absolute;
-        bottom: -11rem;
+        width: 5rem;
+        height: 5rem;
         left: 50%;
+        bottom: 8rem;
         transform: translateX(-50%);
+        .icon {
+          font-size: 5rem;
+          color: white;
+          border-width: 0.5rem;
+          border-radius: 100%;
+          border-style: solid;
+          border-color: gray;
+        }
+      }
+    }
+  }
+}
+
+@include respond(tab-port) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .camera {
+      position: relative;
+      margin: auto;
+      .container_button {
+        position: absolute;
+        width: 5rem;
+        height: 5rem;
+        right: 0;
+        bottom: 40%;
+        transform: translateX(-50%);
+        .icon {
+          font-size: 5rem;
+          color: white;
+          border-width: 0.5rem;
+          border-radius: 100%;
+          border-style: solid;
+          border-color: gray;
+        }
       }
     }
   }
