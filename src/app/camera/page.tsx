@@ -1,31 +1,49 @@
 "use client";
 import style from "@/styles/pages/_camerapage.module.scss";
 import Webcam from "react-webcam";
-import { FC, useRef, useState, useEffect } from "react";
-import { Camera } from "@/components";
+import { FC, useRef, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
-import { Routes } from "@/utils/path";
-import button from "@/styles/components/_button.module.scss";
 import { useWindowSize } from "@/components/";
+import { dataUrlToFile } from "@/utils/helper";
+import { useForm } from "react-hook-form";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 const Page: FC = ({}) => {
+  const sizeWindow = useWindowSize();
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
-  const [img, setImage] = useState<string | null>(null);
-  const showImage = () => {
-    const Image = webRef.current?.getScreenshot();
-    if (Image) setImage(Image);
-  };
-  const a = useWindowSize();
-  console.log(img);
+  const [img, setImage] = useState<any>(null);
+  const [linkImg, setLinkImg] = useState<string | null>(null);
 
-  let videoConstraints = {
-    facingMode: "user",
-    width: a.width,
-    height: a.height,
+  const videoConstraints = {
+    facingMode: process.env.NEXT_PUBLIC_CAMERA,
+    width: sizeWindow.width,
+    height: sizeWindow.height,
   };
+  const handleSendImage = async (base64: string) => {
+    const formData = new FormData();
+    const file = await dataUrlToFile(base64);
+    formData.append("form", file);
+    await axios({
+      data: formData,
+      method: "post",
+      headers: { "Content-Type": "multipart/form-data" },
+      url: `${process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE}/cloudinary`,
+    })
+      .then((rs: AxiosResponse) => {
+        if (rs.status >= 400 && rs.status <= 599)
+          console.log("something went wrong");
+        else setLinkImg(rs.data);
+      })
+      .catch((err: AxiosError) => console.log(err));
+  };
+
+  const capturePhoto = useCallback(async () => {
+    const imgSrc = webRef.current?.getScreenshot();
+    setImage(imgSrc);
+  }, [webRef]);
 
   return (
     <div className={style.container}>
@@ -39,13 +57,17 @@ const Page: FC = ({}) => {
           height={videoConstraints.height}
           mirrored={false}
         />
-        <div className={style.container_button}>
+        <button
+          type="submit"
+          className={style.container_button}
+          onClick={() => handleSendImage(img)}
+        >
           <FontAwesomeIcon
             icon={icon.faCircle}
             className={style.icon}
-            onClick={() => showImage()}
+            onClick={() => capturePhoto()}
           />
-        </div>
+        </button>
       </div>
     </div>
   );

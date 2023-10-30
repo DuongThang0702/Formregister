@@ -1,12 +1,12 @@
 @import "../abstracts/variables";
 @import "../abstracts/mixins";
 
-@include respond(phone) {
-  .container {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-color: black;
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  @include respond(phone) {
     .header {
       background-color: transparent;
       width: 100%;
@@ -19,20 +19,25 @@
     .camera {
       position: relative;
       margin: auto;
-      .container_button {
-        position: absolute;
-        width: 5rem;
-        height: 5rem;
-        left: 50%;
-        bottom: 8rem;
-        transform: translateX(-50%);
-        .icon {
-          font-size: 5rem;
-          color: white;
-          border-width: 0.5rem;
-          border-radius: 100%;
-          border-style: solid;
-          border-color: gray;
+      form {
+        position: relative;
+        .container_button {
+          position: absolute;
+          width: 5rem;
+          height: 5rem;
+          left: 50%;
+          background-color: transparent;
+          border: none;
+          bottom: 0;
+          transform: translateX(-50%);
+          .icon {
+            font-size: 5rem;
+            color: white;
+            border-width: 0.5rem;
+            border-radius: 100%;
+            border-style: solid;
+            border-color: gray;
+          }
         }
       }
     }
@@ -56,6 +61,9 @@
         position: absolute;
         width: 5rem;
         height: 5rem;
+        display: block;
+        background-color: transparent;
+        border: none;
         right: 0;
         bottom: 40%;
         transform: translateX(-50%);
