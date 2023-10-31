@@ -10,8 +10,11 @@ function generateString(length: number) {
   return result;
 }
 
-export async function dataUrlToFile(dataUrl: string): Promise<File> {
+export async function dataUrlToFile(
+  dataUrl: string,
+  fileName: string
+): Promise<File> {
   const res: Response = await fetch(dataUrl);
   const blob: Blob = await res.blob();
-  return new File([blob], generateString(10), { type: "image/jpeg" });
+  return new File([blob], "hi", { type: "image/jpeg" });
 }

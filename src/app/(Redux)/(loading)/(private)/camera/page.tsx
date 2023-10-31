@@ -13,6 +13,7 @@ import { AppDispatch } from "@/redux/store";
 import { passLink } from "@/redux/link";
 import { Routes } from "@/utils/path";
 import { showModel } from "@/redux/app";
+import { v4 as uuidv4 } from "uuid";
 
 const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,6 +22,8 @@ const Page: FC = ({}) => {
   const webRef = useRef<Webcam>(null);
   const [img, setImage] = useState<any>(null);
 
+  const randomString = uuidv4();
+
   const videoConstraints = {
     facingMode: process.env.NEXT_PUBLIC_CAMERA,
     width: sizeWindow.width,
@@ -28,7 +31,9 @@ const Page: FC = ({}) => {
   };
   const handleSendImage = async (base64: string) => {
     const formData = new FormData();
-    const file = await dataUrlToFile(base64);
+    const file = await dataUrlToFile(base64, randomString);
+    console.log(file);
+
     dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
     formData.append("file", file);
     formData.append("upload_preset", "form_survey");
@@ -40,6 +45,7 @@ const Page: FC = ({}) => {
         router.push(`/${Routes.FORM}`);
       })
       .catch((err: AxiosError) => {
+        // router.push(`/${Routes.FORM}`);
         console.log(err);
       });
   };
