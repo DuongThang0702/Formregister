@@ -46,7 +46,10 @@ const Page: FC = ({}) => {
           router.push(`/${Routes.FORM}`);
         }
       })
-      .catch((err: AxiosError) => console.log(err));
+      .catch((err: AxiosError) => {
+        dispatch(showModel({ isShowModel: false, modelChildren: null }));
+        console.log(err);
+      });
   };
 
   const capturePhoto = useCallback(async () => {
