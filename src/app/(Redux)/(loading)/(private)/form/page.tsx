@@ -21,6 +21,8 @@ const Page: FC = ({}) => {
   } = useForm<formRegister>();
   const onSubmit = (data: formRegister) => console.log(data);
 
+  console.log(link);
+
   return (
     <div className={style.container}>
       <div className={style.top}>

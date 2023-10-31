@@ -29,21 +29,21 @@ const Page: FC = ({}) => {
   const handleSendImage = async (base64: string) => {
     const formData = new FormData();
     const file = await dataUrlToFile(base64);
-    formData.append("form", file);
+    formData.append("file", file);
+    formData.append("upload_preset", "form_survey");
     dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
     await axios({
       data: formData,
       method: "post",
       headers: { "Content-Type": "multipart/form-data" },
-      url: `${process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE}/cloudinary`,
+      url: process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE,
     })
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         if (rs.status >= 400 && rs.status <= 599) {
           router.push(`/${Routes.FORM}`);
-          console.log("something went wrong");
         } else {
-          dispatch(passLink({ link: rs.data }));
+          dispatch(passLink({ link: rs.data.url }));
           router.push(`/${Routes.FORM}`);
         }
       })
