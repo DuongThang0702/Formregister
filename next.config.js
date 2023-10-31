@@ -5,7 +5,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["res.cloudinary.com", "api.caodangvietmy.edu.vn"],
+    domains: ["res.cloudinary.com"],
   },
 };
 

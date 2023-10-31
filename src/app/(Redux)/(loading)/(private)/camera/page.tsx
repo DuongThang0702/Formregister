@@ -29,27 +29,17 @@ const Page: FC = ({}) => {
   const handleSendImage = async (base64: string) => {
     const formData = new FormData();
     const file = await dataUrlToFile(base64);
+    dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
     formData.append("file", file);
     formData.append("upload_preset", "form_survey");
-    dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
-    await axios({
-      data: formData,
-      method: "post",
-      headers: { "Content-Type": "multipart/form-data" },
-      url: process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE,
-    })
+    await axios
+      .post(process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE as string, formData)
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
-        if (rs.status >= 400 && rs.status <= 599) {
-          router.push(`/${Routes.FORM}`);
-        } else {
-          dispatch(passLink({ link: rs.data.url }));
-          router.push(`/${Routes.FORM}`);
-        }
+        dispatch(passLink({ link: rs.data.url }));
+        router.push(`/${Routes.FORM}`);
       })
       .catch((err: AxiosError) => {
-        dispatch(showModel({ isShowModel: false, modelChildren: null }));
-        router.push(`/${Routes.FORM}`);
         console.log(err);
       });
   };
