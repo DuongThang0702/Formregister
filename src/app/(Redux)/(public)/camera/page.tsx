@@ -1,21 +1,25 @@
 "use client";
 import style from "@/styles/pages/_camerapage.module.scss";
 import Webcam from "react-webcam";
-import { FC, useRef, useState, useEffect, useCallback } from "react";
+import { FC, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import { useWindowSize } from "@/components/";
 import { dataUrlToFile } from "@/utils/helper";
-import { useForm } from "react-hook-form";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { passLink } from "@/redux/link";
+import { Routes } from "@/utils/path";
+import { showModel } from "@/redux/app";
 
 const Page: FC = ({}) => {
+  const dispatch = useDispatch<AppDispatch>();
   const sizeWindow = useWindowSize();
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
   const [img, setImage] = useState<any>(null);
-  const [linkImg, setLinkImg] = useState<string | null>(null);
 
   const videoConstraints = {
     facingMode: process.env.NEXT_PUBLIC_CAMERA,
@@ -26,6 +30,7 @@ const Page: FC = ({}) => {
     const formData = new FormData();
     const file = await dataUrlToFile(base64);
     formData.append("form", file);
+    dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
     await axios({
       data: formData,
       method: "post",
@@ -33,9 +38,13 @@ const Page: FC = ({}) => {
       url: `${process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE}/cloudinary`,
     })
       .then((rs: AxiosResponse) => {
+        dispatch(showModel({ isShowModel: false, modelChildren: null }));
         if (rs.status >= 400 && rs.status <= 599)
           console.log("something went wrong");
-        else setLinkImg(rs.data);
+        else {
+          dispatch(passLink({ link: rs.data }));
+          router.push(`/${Routes.FORM}`);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
   };

@@ -1,0 +1,26 @@
+@import "../abstracts/variables";
+
+.input {
+  font-size: $size-2xl;
+  padding: 1rem;
+  font-size: $size-xl;
+}
+
+.textarea {
+}
+.containerRadio {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  font-size: $size-2xl;
+}
+
+.error {
+  color: red;
+  font-weight: 600;
+  font-size: $size-base;
+}
+
+.fullW {
+  width: 100%;
+}
