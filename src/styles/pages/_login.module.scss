@@ -1,0 +1,46 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+.wrapper {
+  @include wrapper();
+  .form {
+    width: 30%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    margin-top: 5rem;
+    position: relative;
+    @include respond(phone) {
+      width: 85%;
+    }
+    @include respond(tab-port) {
+      width: 85%;
+      padding-bottom: 1rem;
+    }
+    .containerInput {
+      display: flex;
+      align-items: center;
+      column-gap: 1rem;
+      label {
+        width: 10rem;
+        font-size: $size-xl;
+        font-weight: 600;
+      }
+    }
+    .buttonLogin {
+      width: 20%;
+      margin: auto;
+      padding: 1rem;
+      background-color: transparent;
+      cursor: pointer;
+
+      @include respond(phone) {
+        width: 40%;
+      }
+      @include respond(tab-port) {
+        width: 40%;
+      }
+    }
+  }
+}

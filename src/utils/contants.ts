@@ -1,3 +1,6 @@
+import icon from "./icon";
+import { Routes } from "./path";
+
 export const checkBoxTrainingSystem = [
   {
     id: 1,
@@ -78,5 +81,31 @@ export const checkBoxTrainingSystem = [
     id: 16,
     content: "Khác",
     value: "other",
+  },
+];
+export const tabSystem = [
+  {
+    id: 1,
+    icon: icon.faNewspaper,
+    title: "Thu thập hồ sơ",
+    path: `/${Routes.CAMERA}`,
+  },
+  {
+    id: 2,
+    icon: icon.faPhoneVolume,
+    title: "Tư vấn",
+    path: `/${Routes.CAMERA}`,
+  },
+  {
+    id: 3,
+    icon: icon.faSchool,
+    title: "Nhập học",
+    path: `/${Routes.CAMERA}`,
+  },
+  {
+    id: 4,
+    icon: icon.faFolderOpen,
+    title: "Quản lý hồ sơ",
+    path: `/${Routes.CAMERA}`,
   },
 ];

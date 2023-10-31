@@ -4,3 +4,8 @@ export type formRegister = {
   trainingSystem: string;
   theIndustryCares: string[];
 };
+
+export type Login = {
+  id: string;
+  password: string;
+};

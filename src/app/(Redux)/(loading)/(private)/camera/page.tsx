@@ -1,7 +1,7 @@
 "use client";
 import style from "@/styles/pages/_camerapage.module.scss";
 import Webcam from "react-webcam";
-import { FC, useRef, useState, useCallback } from "react";
+import { FC, useRef, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
@@ -39,15 +39,17 @@ const Page: FC = ({}) => {
     })
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
-        if (rs.status >= 400 && rs.status <= 599)
+        if (rs.status >= 400 && rs.status <= 599) {
+          router.push(`/${Routes.FORM}`);
           console.log("something went wrong");
-        else {
+        } else {
           dispatch(passLink({ link: rs.data }));
           router.push(`/${Routes.FORM}`);
         }
       })
       .catch((err: AxiosError) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
+        router.push(`/${Routes.FORM}`);
         console.log(err);
       });
   };
@@ -56,6 +58,11 @@ const Page: FC = ({}) => {
     const imgSrc = webRef.current?.getScreenshot();
     setImage(imgSrc);
   }, [webRef]);
+
+  useEffect(() => {
+    if (sizeWindow.width && sizeWindow.width >= 1200)
+      router.push(`/${Routes.FORM}`);
+  }, [sizeWindow]);
 
   return (
     <div className={style.container}>

@@ -1,0 +1,39 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+.wrapper {
+  @include wrapper();
+  .containerTabs {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10rem;
+    margin-top: 5%;
+    @include respond(phone) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 18%;
+      column-gap: 4rem;
+      row-gap: 4rem;
+      width: 80%;
+    }
+    .tab {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 2rem;
+      color: $main-color;
+      cursor: pointer;
+      .icon {
+        width: 10rem;
+        height: 10rem;
+      }
+      h1 {
+        user-select: none;
+      }
+    }
+  }
+}
