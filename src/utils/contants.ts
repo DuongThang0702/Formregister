@@ -109,3 +109,34 @@ export const tabSystem = [
     path: `/${Routes.CAMERA}`,
   },
 ];
+export const tabSidebarAdmin = [
+  {
+    id: 1,
+    title: "Dashbard",
+    type: "single",
+    icon: icon.faHouse,
+    path: `/${Routes.ADMIN}/${Routes.DASHBOARD}`,
+  },
+  {
+    id: 2,
+    title: "User",
+    icon: icon.faPeopleGroup,
+    type: "parent",
+    child: [
+      {
+        id: 3,
+        title: "Create",
+        icon: icon.faUserPlus,
+        type: "single",
+        path: `/${Routes.ADMIN}/${Routes.USER}/${Routes.CREATE_USER}`,
+      },
+      {
+        id: 4,
+        title: "Manage",
+        type: "single",
+        icon: icon.faUsers,
+        path: `/${Routes.ADMIN}/${Routes.USER}/${Routes.MANAGE_USER}`,
+      },
+    ],
+  },
+];

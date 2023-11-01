@@ -1,0 +1,23 @@
+@import "../../abstracts/mixins";
+@import "../../abstracts/variables";
+
+.wrapper {
+  .containerOptions {
+    flex-direction: column;
+    display: flex;
+    padding-top: 1rem;
+  }
+  .option {
+    margin: 0.5rem 1.5rem;
+    padding: 1rem 0.5rem;
+    font-size: $size-2xl;
+    text-align: start;
+    border-width: 0.25rem;
+    border-color: rgb(240, 237, 237);
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    cursor: pointer;
+  }
+}

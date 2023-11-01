@@ -1,0 +1,11 @@
+@import "../../abstracts/mixins";
+@import "../../abstracts/variables";
+
+.container {
+  height: 4rem;
+  background-color: white;
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

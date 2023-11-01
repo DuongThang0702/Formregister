@@ -4,14 +4,19 @@ import style from "@/styles/pages/_formPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { useForm } from "react-hook-form";
-import { InputForm } from "@/components";
+import { InputForm, Loading } from "@/components";
 import { formRegister } from "@/utils/types";
 import { checkBoxTrainingSystem } from "@/utils/contants";
 import Image from "next/image";
 import { showModel } from "@/redux/app";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { Routes } from "@/utils/path";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import icon from "@/utils/icon";
 
 const Page: FC = ({}) => {
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { link } = useSelector((state: RootState) => state.link);
   const {
@@ -20,7 +25,13 @@ const Page: FC = ({}) => {
     watch,
     formState: { errors },
   } = useForm<formRegister>();
-  const onSubmit = (data: formRegister) => console.log(data);
+  const onSubmit = (data: formRegister) => {
+    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
+    setTimeout(() => {
+      dispatch(showModel({ isShowModel: false, modelChildren: null }));
+      router.push(`/${Routes.SYSTEM}`);
+    }, 2000);
+  };
 
   const fetch = async () => {
     await axios
@@ -32,13 +43,18 @@ const Page: FC = ({}) => {
     link && fetch();
   }, [link]);
 
-  // console.log(link);
-
   return (
     <div className={style.container}>
       <div className={style.top}>
         <div className={style.logo}>
           <Image src={"/logo.png"} height={1000} width={1000} alt="logo" />
+        </div>
+        <div
+          className={style.back}
+          onClick={() => router.push(`/${Routes.SYSTEM}`)}
+        >
+          <FontAwesomeIcon icon={icon.faArrowLeftLong} />
+          Back
         </div>
         <div className={style.title}>Khảo sát môn học</div>
       </div>

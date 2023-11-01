@@ -10,6 +10,11 @@ import {
   faPhoneVolume,
   faSchool,
   faNewspaper,
+  faHouse,
+  faPeopleGroup,
+  faUserPlus,
+  faUsers,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 const icon = {
   faFileImage,
@@ -21,6 +26,11 @@ const icon = {
   faPhoneVolume,
   faSchool,
   faNewspaper,
+  faHouse,
+  faPeopleGroup,
+  faUserPlus,
+  faUsers,
+  faChevronRight,
 };
 
 export default icon;

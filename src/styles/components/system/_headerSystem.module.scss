@@ -1,0 +1,45 @@
+@import "../../abstracts/mixins";
+@import "../../abstracts/variables";
+
+.container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: white;
+  padding: 2rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 10;
+  .logo {
+    width: 10rem;
+    display: block;
+    height: 5rem;
+  }
+  .options {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+    position: relative;
+    .text {
+      font-size: $size-2xl;
+      font-weight: 500;
+    }
+    .avatar {
+      width: 4.5rem;
+      height: 4.5rem;
+      cursor: pointer;
+    }
+    .containerTab {
+      position: absolute;
+      background-color: white;
+      left: 2rem;
+      right: -5.5rem;
+      top: 6rem;
+      bottom: -15rem;
+      z-index: 20;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+}

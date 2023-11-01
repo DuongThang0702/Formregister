@@ -5,7 +5,7 @@ import { FC, useRef, useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
-import { useWindowSize } from "@/components/";
+import { Loading, useWindowSize } from "@/components/";
 import { dataUrlToFile } from "@/utils/helper";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
@@ -28,10 +28,11 @@ const Page: FC = ({}) => {
     width: sizeWindow.width,
     height: sizeWindow.height,
   };
+
   const handleSendImage = async (base64: string) => {
     const formData = new FormData();
     const file = await dataUrlToFile(base64, randomString);
-    dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
+    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
     formData.append("file", file);
     formData.append("upload_preset", "form_survey");
     await axios
@@ -39,12 +40,10 @@ const Page: FC = ({}) => {
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         dispatch(passLink({ link: rs.data.url }));
-        console.log(rs);
         router.push(`/${Routes.FORM}`);
       })
       .catch((err: AxiosError) => {
         router.push(`/${Routes.FORM}`);
-        console.log(err);
       });
   };
 
