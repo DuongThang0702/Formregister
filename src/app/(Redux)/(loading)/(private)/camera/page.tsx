@@ -20,9 +20,8 @@ const Page: FC = ({}) => {
   const sizeWindow = useWindowSize();
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
-  const [img, setImage] = useState<any>(null);
-
   const randomString = uuidv4();
+  let img: any = "";
 
   const videoConstraints = {
     facingMode: process.env.NEXT_PUBLIC_CAMERA,
@@ -32,8 +31,6 @@ const Page: FC = ({}) => {
   const handleSendImage = async (base64: string) => {
     const formData = new FormData();
     const file = await dataUrlToFile(base64, randomString);
-    console.log(file);
-
     dispatch(showModel({ isShowModel: true, modelChildren: <h1>Loading</h1> }));
     formData.append("file", file);
     formData.append("upload_preset", "form_survey");
@@ -42,18 +39,19 @@ const Page: FC = ({}) => {
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         dispatch(passLink({ link: rs.data.url }));
+        console.log(rs);
         router.push(`/${Routes.FORM}`);
       })
       .catch((err: AxiosError) => {
-        // router.push(`/${Routes.FORM}`);
+        router.push(`/${Routes.FORM}`);
         console.log(err);
       });
   };
 
   const capturePhoto = useCallback(async () => {
-    const imgSrc = webRef.current?.getScreenshot();
-    setImage(imgSrc);
-  }, [webRef]);
+    img = webRef.current?.getScreenshot();
+    handleSendImage(img);
+  }, []);
 
   useEffect(() => {
     if (sizeWindow.width && sizeWindow.width >= 1200)
@@ -66,17 +64,13 @@ const Page: FC = ({}) => {
         <Webcam
           ref={webRef}
           audio={false}
-          screenshotFormat="image/jpeg"
+          screenshotFormat="image/png"
           videoConstraints={videoConstraints}
           width={videoConstraints.width}
           height={videoConstraints.height}
           mirrored={false}
         />
-        <button
-          type="submit"
-          className={style.container_button}
-          onClick={() => handleSendImage(img)}
-        >
+        <button type="submit" className={style.container_button}>
           <FontAwesomeIcon
             icon={icon.faCircle}
             className={style.icon}

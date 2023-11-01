@@ -9,6 +9,7 @@ import { formRegister } from "@/utils/types";
 import { checkBoxTrainingSystem } from "@/utils/contants";
 import Image from "next/image";
 import { showModel } from "@/redux/app";
+import axios from "axios";
 
 const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +22,17 @@ const Page: FC = ({}) => {
   } = useForm<formRegister>();
   const onSubmit = (data: formRegister) => console.log(data);
 
-  console.log(link);
+  const fetch = async () => {
+    await axios
+      .get(`http://localhost:8000/detect_text?image_url=${link}`)
+      .then((rs) => console.log(rs));
+  };
+
+  useEffect(() => {
+    link && fetch();
+  }, [link]);
+
+  // console.log(link);
 
   return (
     <div className={style.container}>
