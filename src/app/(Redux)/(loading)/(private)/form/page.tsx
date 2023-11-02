@@ -39,13 +39,15 @@ const Page: FC = ({}) => {
 
   const fetch = async () => {
     await axios
-      .get(`http://localhost:8000/detect_text?image_url=${link}`)
-      .then((rs) =>
+      .get(`http://45.119.82.190:8000/detect_text?image_url=${link}`)
+      .then((rs) => {
+        console.log(rs);
+
         setInfo({
           dienthoai: rs?.data?.dienthoai,
           hoten: rs?.data?.hoten,
-        })
-      );
+        });
+      });
   };
 
   useEffect(() => {
@@ -86,10 +88,9 @@ const Page: FC = ({}) => {
             <InputForm
               register={register}
               id="phoneNumber"
-              type="number"
               fullW
               placeholder="Điện thoại"
-              defaultValue={parseInt(info?.dienthoai as string)}
+              defaultValue={info?.dienthoai}
             />
           </div>
         </div>

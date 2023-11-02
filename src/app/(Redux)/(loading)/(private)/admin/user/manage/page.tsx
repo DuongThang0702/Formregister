@@ -5,18 +5,19 @@ import axios, { AxiosResponse } from "axios";
 import { fieldsAdminUser } from "@/utils/contants";
 
 const Page: FC = ({}) => {
-  // const fetchAllUser = async () => {
-  //   await axios
-  //     .get("https://api-mogodb.onrender.com/get_ListAdmission2/")
-  //     .then((rs: AxiosResponse) => {
-  //       console.log(rs);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const fetchAllUser = async () => {
+    await axios
+      .get("https://api-mogodb.onrender.com/get_ListAdmission2/")
+      .then((rs: AxiosResponse) => {
+        console.log(rs.data.data);
+        console.log(JSON.parse(rs.data.data));
+      })
+      .catch((err) => console.log(err));
+  };
 
-  // useEffect(() => {
-  //   fetchAllUser();
-  // }, []);
+  useEffect(() => {
+    fetchAllUser();
+  }, []);
   return (
     <div className={style.wrapper}>
       <div className={style.top}>
