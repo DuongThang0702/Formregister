@@ -18,6 +18,11 @@ export type CreateUser = {
   nganhHoc: string;
 };
 
+export type Users = {
+  users: User[];
+  counts: number;
+};
+
 export type User = {
   _id: string;
   username: string;
@@ -25,6 +30,6 @@ export type User = {
   heDaoTao: string;
   nganhHoc: string;
   password?: string;
-  soDienThoai?: string;
+  sdt?: string;
   role: string;
 };

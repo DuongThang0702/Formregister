@@ -3,13 +3,13 @@ import { FC, useEffect, useState } from "react";
 import style from "@/styles/pages/_manage-user.module.scss";
 import axios, { AxiosResponse } from "axios";
 import { fieldsAdminUser } from "@/utils/contants";
-import { User } from "@/utils/types";
+import { Users } from "@/utils/types";
 
 const Page: FC = ({}) => {
-  const [users, setUsers] = useState<User[] | null>(null);
+  const [users, setUsers] = useState<Users | null>(null);
   const fetchAllUser = async () => {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_USER}/api/user`)
+      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`)
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599) return null;
         else setUsers(rs.data);
@@ -20,6 +20,7 @@ const Page: FC = ({}) => {
   useEffect(() => {
     fetchAllUser();
   }, []);
+
   return (
     <div className={style.wrapper}>
       <div className={style.top}>
@@ -42,7 +43,7 @@ const Page: FC = ({}) => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((el) => (
+            {users?.users.map((el) => (
               <tr key={el._id}>
                 <td>{el._id}</td>
                 <td>{el.username}</td>

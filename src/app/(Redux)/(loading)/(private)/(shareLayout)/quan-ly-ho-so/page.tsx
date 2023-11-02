@@ -2,12 +2,12 @@
 import { FC, useState, useEffect } from "react";
 import style from "@/styles/pages/_quan-ly-ho-so.module.scss";
 import { fieldsTableQl } from "@/utils/contants";
-import { User } from "@/utils/types";
+import { User, Users } from "@/utils/types";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import * as xlsx from "xlsx";
 
 const Page: FC = ({}) => {
-  const [users, setUsers] = useState<User[] | null>(null);
+  const [users, setUsers] = useState<Users | null>(null);
 
   const fetchUsers = async () => {
     await axios
@@ -39,28 +39,28 @@ const Page: FC = ({}) => {
               Export to Excel
             </div>
           </div>
-          <div className={style.table}>
-            <div className={style.thead}>
-              <div className={style.tr}>
+          <table className={style.table}>
+            <thead className={style.thead}>
+              <tr className={style.tr}>
                 {fieldsTableQl.map((el) => (
-                  <div key={el.id} className={style.th}>
+                  <th key={el.id} className={`${style.th}`}>
                     {el.title}
-                  </div>
+                  </th>
                 ))}
-              </div>
-            </div>
-            <div className={style.tbody}>
-              {users?.map((el) => (
-                <div className={style.tr} key={el._id}>
-                  <div className={style.td}>{el._id}</div>
-                  <div className={style.td}>{el.hoTen}</div>
-                  <div className={style.td}>{el.soDienThoai}</div>
-                  <div className={style.td}>{el.heDaoTao}</div>
-                  <div className={style.td}>{el.nganhHoc}</div>
-                </div>
+              </tr>
+            </thead>
+            <tbody className={style.tbody}>
+              {users?.users.map((el) => (
+                <tr className={style.tr} key={el._id}>
+                  <td className={style.td}>{el._id}</td>
+                  <td className={style.td}>{el.hoTen}</td>
+                  <td className={style.td}>{el.sdt}</td>
+                  <td className={style.td}>{el.heDaoTao}</td>
+                  <td className={style.td}>{el.nganhHoc}</td>
+                </tr>
               ))}
-            </div>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

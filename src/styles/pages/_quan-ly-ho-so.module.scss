@@ -38,19 +38,7 @@
         }
       }
       .table {
-        width: 100%;
-        display: grid;
-        .thead {
-          @include CustomTable();
-          background-color: $main-color;
-        }
-        .tbody {
-          @include CustomTable();
-          border: 0.25px solid black;
-          border-top-width: 0;
-          border-bottom-width: 0;
-          background-color: white;
-        }
+        @include customtable();
       }
     }
   }

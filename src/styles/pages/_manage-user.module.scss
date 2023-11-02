@@ -12,46 +12,7 @@
     border-radius: 1rem;
     padding: 4rem;
     .table {
-      table-layout: auto;
-      width: 100%;
-      border-color: #364152;
-      border-style: solid;
-      border-width: 1px;
-      thead {
-        background-color: #364152;
-        color: white;
-        tr {
-          th {
-            font-size: $size-2xl;
-            font-weight: 500;
-            padding: 1rem;
-            text-align: start;
-          }
-        }
-      }
-      tbody {
-        font-size: $size-2xl;
-        tr {
-          td {
-            padding: 1rem;
-            text-align: start;
-            border-right-width: 1px;
-            border-bottom-width: 1px;
-            border-top-width: 0;
-            border-left-width: 0;
-            border-color: #364152;
-            border-style: solid;
-            .update {
-              background-color: $primary;
-              border-radius: 0.5rem;
-              text-align: center;
-              padding: 1rem;
-              color: white;
-              font-weight: 600;
-            }
-          }
-        }
-      }
+      @include customtable();
     }
   }
 }

@@ -33,7 +33,7 @@ const Page: FC = ({}) => {
     dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
     await axios
       .post(
-        `https://api-mogodb.onrender.com/insert_admission?username=${data.name}&hoTen=${data.phoneNumber}&heDaoTao=${data.trainingSystem}&nganhHoc=${data.theIndustryCares}`
+        `https://api-mogodb.onrender.com/insert_admission?username=${data.name}&sdt=${data.phoneNumber}&hoTen=${data.name}&heDaoTao=${data.trainingSystem}&nganhHoc=${data.theIndustryCares}`
       )
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
@@ -52,12 +52,16 @@ const Page: FC = ({}) => {
           dienthoai: rs?.data?.data.dienthoai,
           hoten: rs?.data?.data.hoten,
         });
+      })
+      .catch((err: AxiosError) => {
+        console.log(err);
+        dispatch(showModel({ isShowModel: false, modelChildren: null }));
       });
   };
 
   useEffect(() => {
     link && fetch();
-  }, [link]);
+  }, []);
 
   return (
     <div className={style.container}>
