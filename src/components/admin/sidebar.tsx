@@ -2,12 +2,14 @@ import { FC, Fragment, memo, useState } from "react";
 import style from "@/styles/components/admin/_sidebbar.module.scss";
 import Image from "next/image";
 import { tabSidebarAdmin } from "@/utils/contants";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
 import Link from "next/link";
+import { Routes } from "@/utils/path";
 
 const Page: FC = ({}) => {
+  const router = useRouter();
   const pathName = usePathname();
   const [isShowTabParents, setIsShowTabParents] = useState<Array<number>>([]);
   const handleShowTabParent = (tabId: number) => {
@@ -25,6 +27,7 @@ const Page: FC = ({}) => {
         height={800}
         src={`/logo.png`}
         className={style.logo}
+        onClick={() => router.push(`/${Routes.SYSTEM}`)}
       />
       <div className={style.container}>
         <p className={style.sub}>Navigations</p>

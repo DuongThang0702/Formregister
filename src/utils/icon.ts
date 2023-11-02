@@ -2,6 +2,7 @@ import {
   faFileImage,
   faImage,
   faFolderOpen,
+  faUser,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faCamera,
@@ -15,6 +16,7 @@ import {
   faUserPlus,
   faUsers,
   faChevronRight,
+  faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 const icon = {
   faFileImage,
@@ -31,6 +33,8 @@ const icon = {
   faUserPlus,
   faUsers,
   faChevronRight,
+  faArrowRightFromBracket,
+  faUser,
 };
 
 export default icon;

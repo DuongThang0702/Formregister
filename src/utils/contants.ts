@@ -140,3 +140,30 @@ export const tabSidebarAdmin = [
     ],
   },
 ];
+
+export const fieldsAdminUser = [
+  {
+    id: 1,
+    title: "#",
+  },
+  {
+    id: 2,
+    title: "username",
+  },
+  {
+    id: 3,
+    title: "ho ten",
+  },
+  {
+    id: 4,
+    title: "nganh dao tao",
+  },
+  {
+    id: 5,
+    title: "nganh hoc",
+  },
+  {
+    id: 6,
+    title: "Action",
+  },
+];

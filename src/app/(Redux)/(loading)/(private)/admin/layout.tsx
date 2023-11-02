@@ -16,7 +16,7 @@ export default function AdminLayout({
           <HeaderAdmin />
         </div>
         <div className={style.blockHeader}></div>
-        {children}
+        <div className={style.p5}>{children}</div>
       </div>
     </div>
   );

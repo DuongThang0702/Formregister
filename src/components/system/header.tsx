@@ -27,7 +27,7 @@ const Page: FC = ({}) => {
       <div
         className={style.options}
         id="user"
-        onClick={() => setShowOptions((prev) => !prev)}
+        onClick={() => setShowOptions(true)}
       >
         <h1 className={style.text}>Hi, User</h1>
         <Image

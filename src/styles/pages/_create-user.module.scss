@@ -1,0 +1,59 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+.container {
+  @include layoutAdmin();
+  .button {
+    width: 12%;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem 3rem;
+    color: white;
+    font-size: $size-2xl;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.containerInput {
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  border-radius: 1rem;
+  .topInput {
+    border-radius: 1rem;
+    background-color: #f9fafd;
+    padding: 4rem;
+    .title {
+      font-size: $size-2xl;
+      font-weight: 500;
+    }
+  }
+  .center {
+    margin-top: 2rem;
+    padding: 0 5rem;
+    padding-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    .container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      .input {
+        padding: 2rem 3rem;
+        border-radius: 1rem;
+        outline: none;
+      }
+      .label {
+        font-size: $size-xl;
+      }
+    }
+  }
+}

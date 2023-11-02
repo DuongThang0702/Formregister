@@ -1,5 +1,5 @@
 "use client";
-import { FC, Fragment, useEffect } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import style from "@/styles/pages/_formPage.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
@@ -19,6 +19,10 @@ const Page: FC = ({}) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { link } = useSelector((state: RootState) => state.link);
+  const [info, setInfo] = useState<{
+    dienthoai: string;
+    hoten: string;
+  }>();
   const {
     register,
     handleSubmit,
@@ -36,7 +40,12 @@ const Page: FC = ({}) => {
   const fetch = async () => {
     await axios
       .get(`http://localhost:8000/detect_text?image_url=${link}`)
-      .then((rs) => console.log(rs));
+      .then((rs) =>
+        setInfo({
+          dienthoai: rs?.data?.dienthoai,
+          hoten: rs?.data?.hoten,
+        })
+      );
   };
 
   useEffect(() => {
@@ -72,6 +81,7 @@ const Page: FC = ({}) => {
               id="name"
               fullW
               placeholder="Họ và tên"
+              defaultValue={info?.hoten}
             />
             <InputForm
               register={register}
@@ -79,6 +89,7 @@ const Page: FC = ({}) => {
               type="number"
               fullW
               placeholder="Điện thoại"
+              defaultValue={parseInt(info?.dienthoai as string)}
             />
           </div>
         </div>
