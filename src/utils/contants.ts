@@ -106,7 +106,7 @@ export const tabSystem = [
     id: 4,
     icon: icon.faFolderOpen,
     title: "Quản lý hồ sơ",
-    path: `/${Routes.CAMERA}`,
+    path: `/${Routes.QUAN_LY_HO_SO}`,
   },
 ];
 export const tabSidebarAdmin = [
@@ -148,20 +148,13 @@ export const fieldsAdminUser = [
   },
   {
     id: 2,
-    title: "username",
+    title: "Username",
   },
   {
     id: 3,
-    title: "ho ten",
+    title: "Password",
   },
-  {
-    id: 4,
-    title: "nganh dao tao",
-  },
-  {
-    id: 5,
-    title: "nganh hoc",
-  },
+
   {
     id: 6,
     title: "Action",

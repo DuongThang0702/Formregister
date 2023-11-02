@@ -9,8 +9,8 @@ const Page: FC = ({}) => {
     await axios
       .get("https://api-mogodb.onrender.com/get_ListAdmission2/")
       .then((rs: AxiosResponse) => {
-        console.log(rs.data.data);
-        console.log(JSON.parse(rs.data.data));
+        console.log(rs.data[0]);
+        console.log(JSON.parse(rs.data[0]));
       })
       .catch((err) => console.log(err));
   };
@@ -38,8 +38,6 @@ const Page: FC = ({}) => {
             <tr>
               <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
               <td>Malcolm Lockyer</td>
-              <td>1961</td>
-              <td>1961</td>
               <td>1961</td>
               <td>1961</td>
             </tr>

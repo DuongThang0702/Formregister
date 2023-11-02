@@ -1,0 +1,38 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .container {
+    width: 80%;
+    margin: auto;
+    padding-top: 5%;
+    h1 {
+      text-transform: uppercase;
+    }
+    .table {
+      .block {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        .button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem 2.5rem;
+          border-radius: 0.5rem;
+          background-color: $primary;
+          font-size: $size-2xl;
+          color: white;
+          font-weight: 500;
+          width: 12%;
+        }
+      }
+    }
+  }
+}

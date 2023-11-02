@@ -9,7 +9,7 @@ import { formRegister } from "@/utils/types";
 import { checkBoxTrainingSystem } from "@/utils/contants";
 import Image from "next/image";
 import { showModel } from "@/redux/app";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/utils/path";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,17 +29,22 @@ const Page: FC = ({}) => {
     watch,
     formState: { errors },
   } = useForm<formRegister>();
-  const onSubmit = (data: formRegister) => {
+  const onSubmit = async (data: formRegister) => {
     dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
-    setTimeout(() => {
-      dispatch(showModel({ isShowModel: false, modelChildren: null }));
-      router.push(`/${Routes.SYSTEM}`);
-    }, 2000);
+    await axios
+      .post(
+        `https://api-mogodb.onrender.com/insert_admission?username=${data.name}&hoTen=${data.phoneNumber}&heDaoTao=${data.trainingSystem}&nganhHoc=${data.theIndustryCares}`
+      )
+      .then((rs: AxiosResponse) => {
+        dispatch(showModel({ isShowModel: false, modelChildren: null }));
+        router.push(`/${Routes.SYSTEM}`);
+      })
+      .catch((err: AxiosError) => console.log(err));
   };
 
   const fetch = async () => {
     await axios
-      .get(`http://45.119.82.190:8000/detect_text?image_url=${link}`)
+      .get(`https://45.119.82.190:8000/detect_text?image_url=${link}`)
       .then((rs) => {
         console.log(rs);
 

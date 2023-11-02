@@ -3,6 +3,7 @@ export enum Routes {
   CAMERA = "camera",
   FORM = "form",
   SYSTEM = "system",
+  QUAN_LY_HO_SO = "quan-ly-ho-so",
 
   ADMIN = "admin",
   DASHBOARD = "dashboard",
