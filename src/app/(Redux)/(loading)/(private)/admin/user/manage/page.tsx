@@ -9,7 +9,7 @@ const Page: FC = ({}) => {
   const [users, setUsers] = useState<User[] | null>(null);
   const fetchAllUser = async () => {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`)
+      .get(`${process.env.NEXT_PUBLIC_API_USER}/api/user`)
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599) return null;
         else setUsers(rs.data);
