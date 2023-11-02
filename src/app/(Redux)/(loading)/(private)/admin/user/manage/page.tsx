@@ -1,16 +1,18 @@
 "use client";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import style from "@/styles/pages/_manage-user.module.scss";
 import axios, { AxiosResponse } from "axios";
 import { fieldsAdminUser } from "@/utils/contants";
+import { User } from "@/utils/types";
 
 const Page: FC = ({}) => {
+  const [users, setUsers] = useState<User[] | null>(null);
   const fetchAllUser = async () => {
     await axios
-      .get("https://api-mogodb.onrender.com/get_ListAdmission2/")
+      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`)
       .then((rs: AxiosResponse) => {
-        console.log(rs.data[0]);
-        console.log(JSON.parse(rs.data[0]));
+        if (rs.status >= 400 && rs.status <= 599) return null;
+        else setUsers(rs.data);
       })
       .catch((err) => console.log(err));
   };
@@ -30,17 +32,27 @@ const Page: FC = ({}) => {
           <thead>
             <tr>
               {fieldsAdminUser.map((el) => (
-                <th key={el.id}>{el.title}</th>
+                <th
+                  key={el.id}
+                  className={`${el.center ? style.text_center : ""}`}
+                >
+                  {el.title}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-              <td>Malcolm Lockyer</td>
-              <td>1961</td>
-              <td>1961</td>
-            </tr>
+            {users?.map((el) => (
+              <tr key={el._id}>
+                <td>{el._id}</td>
+                <td>{el.username}</td>
+                <td>{el.password}</td>
+                <td>{el.role}</td>
+                <td>
+                  <div className={style.update}>Update</div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

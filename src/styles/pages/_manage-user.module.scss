@@ -36,14 +36,26 @@
             padding: 1rem;
             text-align: start;
             border-right-width: 1px;
-            border-bottom-width: 0;
+            border-bottom-width: 1px;
             border-top-width: 0;
-            border-right-width: 0;
+            border-left-width: 0;
             border-color: #364152;
             border-style: solid;
+            .update {
+              background-color: $primary;
+              border-radius: 0.5rem;
+              text-align: center;
+              padding: 1rem;
+              color: white;
+              font-weight: 600;
+            }
           }
         }
       }
     }
   }
+}
+
+.text_center {
+  text-align: center !important;
 }

@@ -37,6 +37,17 @@
       text-align: center;
       width: 100%;
     }
+    .td {
+      padding: 2rem;
+      display: flex;
+      color: black;
+      font-size: $size-2xl;
+      align-items: center;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+      text-align: center;
+      width: 100%;
+    }
   }
 }
 
@@ -55,6 +66,9 @@
     .title {
       font-size: 3rem;
       font-weight: 700;
+      @include respond(phone) {
+        font-size: 2rem;
+      }
       text-transform: uppercase;
     }
   }

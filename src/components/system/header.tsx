@@ -35,7 +35,7 @@ const Page: FC = ({}) => {
       >
         <h1 className={style.text}>Hi, User</h1>
         <Image
-          src={"/avatarDefault.png"}
+          src={"/avatardefault.png"}
           height={100}
           width={100}
           alt="avatar"

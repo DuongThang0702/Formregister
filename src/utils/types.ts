@@ -17,3 +17,14 @@ export type CreateUser = {
   heDaoTao: string;
   nganhHoc: string;
 };
+
+export type User = {
+  _id: string;
+  username: string;
+  hoTen: string;
+  heDaoTao: string;
+  nganhHoc: string;
+  password?: string;
+  soDienThoai?: string;
+  role: string;
+};

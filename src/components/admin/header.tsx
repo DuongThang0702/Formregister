@@ -22,7 +22,7 @@ const Page: FC = ({}) => {
       >
         <Image
           alt="avatar"
-          src={"/avatarDefault.png"}
+          src={"/avatardefault.png"}
           height={100}
           width={100}
           className={style.avatar}

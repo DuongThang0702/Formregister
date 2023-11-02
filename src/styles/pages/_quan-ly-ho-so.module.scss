@@ -10,7 +10,7 @@
   .container {
     width: 80%;
     margin: auto;
-    padding-top: 5%;
+    padding-top: 6%;
     h1 {
       text-transform: uppercase;
     }
@@ -32,6 +32,7 @@
           background-color: $primary;
           font-size: $size-2xl;
           color: white;
+          cursor: pointer;
           font-weight: 500;
           width: 12%;
         }
@@ -39,13 +40,15 @@
       .table {
         width: 100%;
         display: grid;
-        grid-template-rows: repeat(2, minmax(0, 1fr));
         .thead {
           @include CustomTable();
           background-color: $main-color;
         }
         .tbody {
           @include CustomTable();
+          border: 0.25px solid black;
+          border-top-width: 0;
+          border-bottom-width: 0;
           background-color: white;
         }
       }
