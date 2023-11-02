@@ -20,15 +20,20 @@ const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
   const { link } = useSelector((state: RootState) => state.link);
   const [info, setInfo] = useState<{
-    dienthoai: string;
-    hoten: string;
+    dienthoai?: string;
+    hoten?: string;
   }>();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<formRegister>();
+  } = useForm<formRegister>({
+    defaultValues: {
+      name: info?.hoten,
+      phoneNumber: info?.dienthoai,
+    },
+  });
   const onSubmit = async (data: formRegister) => {
     dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
     await axios
@@ -92,14 +97,18 @@ const Page: FC = ({}) => {
               id="name"
               fullW
               placeholder="Họ và tên"
+              validate={{ required: true }}
               defaultValue={info?.hoten}
+              errors={errors?.name?.message}
             />
             <InputForm
               register={register}
               id="phoneNumber"
               fullW
               placeholder="Điện thoại"
+              validate={{ required: true }}
               defaultValue={info?.dienthoai}
+              errors={errors?.phoneNumber?.message}
             />
           </div>
         </div>

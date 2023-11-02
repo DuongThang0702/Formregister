@@ -1,6 +1,6 @@
 export type formRegister = {
   name: string;
-  phoneNumber: number;
+  phoneNumber: string;
   trainingSystem: string;
   theIndustryCares: string[];
 };
@@ -30,6 +30,6 @@ export type User = {
   heDaoTao: string;
   nganhHoc: string;
   password?: string;
-  sdt?: string;
+  sdt: string;
   role: string;
 };
