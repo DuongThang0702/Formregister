@@ -43,10 +43,12 @@ const Page: FC = ({}) => {
   };
 
   const fetch = async () => {
+    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
     await axios
       .get(`https://api-mogodb.onrender.com/detect_text?imageUrl=${link}`)
       .then((rs) => {
         console.log(rs);
+        dispatch(showModel({ isShowModel: false, modelChildren: null }));
 
         setInfo({
           dienthoai: rs?.data?.dienthoai,
@@ -54,6 +56,8 @@ const Page: FC = ({}) => {
         });
       });
   };
+
+  console.log(info);
 
   useEffect(() => {
     link && fetch();
