@@ -44,7 +44,7 @@ const Page: FC = ({}) => {
 
   const fetch = async () => {
     await axios
-      .get(`https://45.119.82.190:8000/detect_text?image_url=${link}`)
+      .get(`https://api-mogodb.onrender.com/detect_text?imageUrl=${link}`)
       .then((rs) => {
         console.log(rs);
 

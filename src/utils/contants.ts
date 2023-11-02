@@ -160,3 +160,26 @@ export const fieldsAdminUser = [
     title: "Action",
   },
 ];
+
+export const fieldsTableQl = [
+  {
+    id: 1,
+    title: "#",
+  },
+  {
+    id: 2,
+    title: "Họ tên",
+  },
+  {
+    id: 3,
+    title: "Điện thoại",
+  },
+  {
+    id: 4,
+    title: "Hệ đào tạo",
+  },
+  {
+    id: 5,
+    title: "Ngành quan tâm",
+  },
+];

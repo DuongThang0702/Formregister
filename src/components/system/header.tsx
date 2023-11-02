@@ -2,8 +2,11 @@ import { FC, useEffect, useState } from "react";
 import style from "@/styles/components/system/_headerSystem.module.scss";
 import Image from "next/image";
 import Options from "./options";
+import { useRouter } from "next/navigation";
+import { Routes } from "@/utils/path";
 
 const Page: FC = ({}) => {
+  const router = useRouter();
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,6 +25,7 @@ const Page: FC = ({}) => {
         width={1000}
         height={1000}
         className={style.logo}
+        onClick={() => router.push(`/${Routes.SYSTEM}`)}
       />
       <div></div>
       <div
