@@ -51,8 +51,8 @@ const Page: FC = ({}) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
 
         setInfo({
-          dienthoai: rs?.data?.dienthoai,
-          hoten: rs?.data?.hoten,
+          dienthoai: rs?.data?.data.dienthoai,
+          hoten: rs?.data?.data.hoten,
         });
       });
   };
