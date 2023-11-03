@@ -21,7 +21,7 @@ const Page: FC = ({}) => {
     unit: "px", // Can be 'px' or '%'
     x: 0,
     y: 30,
-    width: 900,
+    width: 600,
     height: 50,
   });
 
@@ -86,7 +86,9 @@ const Page: FC = ({}) => {
             className={style.image}
           />
         </ReactCrop>
-        <div onClick={download}>Submit</div>
+        <div onClick={download} className={style.button}>
+          Submit
+        </div>
       </div>
     )
   );
