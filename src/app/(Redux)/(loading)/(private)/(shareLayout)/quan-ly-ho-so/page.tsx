@@ -1,17 +1,24 @@
 "use client";
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import style from "@/styles/pages/_quan-ly-ho-so.module.scss";
 import { fieldsTableQl } from "@/utils/contants";
 import { User, Users } from "@/utils/types";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import * as xlsx from "xlsx";
-
+import { DateRangePicker } from "react-date-range";
 const Page: FC = ({}) => {
   const [users, setUsers] = useState<Users | null>(null);
-
+  const [Time, setTime] = useState<any>(null);
   const fetchUsers = async () => {
+    let query = {
+      day: new Date(Time),
+    };
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`)
+      .get(
+        `${process.env.NEXT_PUBLIC_API_USER}/user?${
+          Time ? `day=${new Date(Time)}` : ""
+        }`
+      )
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599) return null;
         else setUsers(rs.data);
@@ -28,11 +35,12 @@ const Page: FC = ({}) => {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [Time]);
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
         <h1>Quản lý hồ sơ</h1>
+        <input type="date" onChange={(e) => setTime(e.target.value)} />
         <div className={style.container_bottom}>
           <div className={style.block}>
             <div className={style.button} onClick={() => downloadexcel(users)}>
