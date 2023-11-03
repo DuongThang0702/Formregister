@@ -43,7 +43,10 @@ const Page: FC = ({}) => {
         <input type="date" onChange={(e) => setTime(e.target.value)} />
         <div className={style.container_bottom}>
           <div className={style.block}>
-            <div className={style.button} onClick={() => downloadexcel(users)}>
+            <div
+              className={style.button}
+              onClick={() => downloadexcel(users?.users)}
+            >
               Export to Excel
             </div>
           </div>
