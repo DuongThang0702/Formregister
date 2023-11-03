@@ -19,6 +19,14 @@
       row-gap: 4rem;
       width: 80%;
     }
+    @include respond(tab-port) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 10%;
+      column-gap: 4rem;
+      row-gap: 4rem;
+      width: 80%;
+    }
     .tab {
       display: flex;
       flex-direction: column;

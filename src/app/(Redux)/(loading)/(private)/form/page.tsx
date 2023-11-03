@@ -84,9 +84,6 @@ const Page: FC = ({}) => {
         <div className={style.title}>Khảo sát môn học</div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={style.formRegister}>
-        <button type="submit" className={style.buttonSubmit}>
-          Đăng ký
-        </button>
         <div>
           <div className={style.header}>
             <h1>Thông tin cá nhân</h1>
@@ -153,8 +150,10 @@ const Page: FC = ({}) => {
             ))}
           </div>
         </div>
+        <button type="submit" className={style.buttonSubmit}>
+          Đăng ký
+        </button>
       </form>
-      ;
     </div>
   );
 };
