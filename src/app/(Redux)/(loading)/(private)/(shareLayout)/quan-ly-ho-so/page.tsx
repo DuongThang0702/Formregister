@@ -5,16 +5,20 @@ import { fieldsTableQl } from "@/utils/contants";
 import { User, Users } from "@/utils/types";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import * as xlsx from "xlsx";
+import { Pagination } from "@/components";
+import { useSearchParams } from "next/navigation";
 const Page: FC = ({}) => {
+  const params = useSearchParams();
   const [users, setUsers] = useState<Users | null>(null);
   const [Time, setTime] = useState<any>(null);
   const fetchUsers = async () => {
     await axios
-      .get(
-        `${process.env.NEXT_PUBLIC_API_USER}/user?${
-          Time ? `day=${new Date(Time)}` : ""
-        }`
-      )
+      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`, {
+        params: {
+          day: Time ? new Date(Time) : new Date(),
+          page: params.get("page"),
+        },
+      })
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599) return null;
         else setUsers(rs.data);
@@ -31,7 +35,7 @@ const Page: FC = ({}) => {
 
   useEffect(() => {
     fetchUsers();
-  }, [Time]);
+  }, [Time, params.get("page")]);
 
   return (
     <div className={style.wrapper}>
@@ -78,9 +82,13 @@ const Page: FC = ({}) => {
               ))}
             </tbody>
           </table>
-          <div className={style.pagination}>
-            <div>hi</div>
-          </div>
+          {users?.counts && users.counts >= 10 && (
+            <div className={style.pagination}>
+              <div className={style.content}>
+                <Pagination totalCounts={users.counts} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

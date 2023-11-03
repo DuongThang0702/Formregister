@@ -106,7 +106,7 @@ export const tabSystem = [
     id: 4,
     icon: icon.faFolderOpen,
     title: "Quản lý hồ sơ",
-    path: `/${Routes.QUAN_LY_HO_SO}`,
+    path: `/${Routes.QUAN_LY_HO_SO}?page=1`,
   },
 ];
 export const tabSidebarAdmin = [

@@ -10,17 +10,15 @@ import { dataUrlToFile } from "@/utils/helper";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { passLink } from "@/redux/link";
+import { passLink, passUrlCapture } from "@/redux/link";
 import { Routes } from "@/utils/path";
 import { showModel } from "@/redux/app";
-import { v4 as uuidv4 } from "uuid";
 
 const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
   const sizeWindow = useWindowSize();
   const router = useRouter();
   const webRef = useRef<Webcam>(null);
-  const randomString = uuidv4();
   let img: any = "";
 
   const videoConstraints = {
@@ -30,21 +28,8 @@ const Page: FC = ({}) => {
   };
 
   const handleSendImage = async (base64: string) => {
-    const formData = new FormData();
-    const file = await dataUrlToFile(base64, randomString);
-    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
-    formData.append("file", file);
-    formData.append("upload_preset", "form_survey");
-    await axios
-      .post(process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE as string, formData)
-      .then((rs: AxiosResponse) => {
-        dispatch(showModel({ isShowModel: false, modelChildren: null }));
-        dispatch(passLink({ link: rs.data.url }));
-        router.push(`/${Routes.FORM}`);
-      })
-      .catch((err: AxiosError) => {
-        router.push(`/${Routes.FORM}`);
-      });
+    dispatch(passUrlCapture({ url: base64 }));
+    router.push(`/${Routes.CAMERA}/${Routes.PREVIEW}`);
   };
 
   const capturePhoto = useCallback(async () => {

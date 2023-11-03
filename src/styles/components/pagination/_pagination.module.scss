@@ -1,0 +1,22 @@
+@import "../../abstracts/mixins";
+@import "../../abstracts/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .arrow {
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 1rem;
+    border: none;
+    background-color: transparent;
+    font-weight: 600;
+    border: 1px solid $primary;
+    color: $primary;
+  }
+  .icon {
+    font-size: $size-xl;
+  }
+}

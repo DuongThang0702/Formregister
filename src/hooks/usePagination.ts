@@ -1,3 +1,4 @@
+import { Pagination } from "@/components";
 import { useMemo } from "react";
 
 const generateRange = (start: number, end: number) => {

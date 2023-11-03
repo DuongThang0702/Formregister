@@ -17,6 +17,7 @@ import {
   faUsers,
   faChevronRight,
   faArrowRightFromBracket,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 const icon = {
   faFileImage,
@@ -35,6 +36,7 @@ const icon = {
   faChevronRight,
   faArrowRightFromBracket,
   faUser,
+  faChevronLeft,
 };
 
 export default icon;
