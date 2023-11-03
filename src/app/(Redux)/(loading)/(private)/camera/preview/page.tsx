@@ -22,7 +22,7 @@ const Page: FC = ({}) => {
     x: 0,
     y: 30,
     width: 600,
-    height: 50,
+    height: 80,
   });
 
   const imgRef = useRef(null);
