@@ -62,7 +62,7 @@ const Page: FC = ({}) => {
         <ReactCrop
           crop={crop}
           onChange={(c) => setCrop(c)}
-          aspect={16 / 9}
+          // aspect={16 / 9}
           onComplete={(e) => {
             if (e?.height == 0 || e?.width == 0) {
               setCompletedCrop({
