@@ -12,7 +12,7 @@ import { canvasPreview, dataUrlToFile } from "@/utils/helper";
 import { showModel } from "@/redux/app";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { passLink } from "@/redux/link";
-
+import imageCompression from "browser-image-compression";
 const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
   const { url } = useSelector((state: RootState) => state.link);
@@ -32,10 +32,16 @@ const Page: FC = ({}) => {
 
   const download = async () => {
     const response = await canvasPreview(imgRef.current, completedCrop);
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1024,
+      useWebWorker: true,
+    };
     if (response) {
       const formData = new FormData();
       dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
-      formData.append("file", response);
+      const conpressedFile = await imageCompression(response, options);
+      formData.append("file", conpressedFile);
       formData.append("upload_preset", "form_survey");
       await axios
         .post(process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE as string, formData)
@@ -62,7 +68,6 @@ const Page: FC = ({}) => {
         <ReactCrop
           crop={crop}
           onChange={(c) => setCrop(c)}
-          // aspect={16 / 9}
           onComplete={(e) => {
             if (e?.height == 0 || e?.width == 0) {
               setCompletedCrop({

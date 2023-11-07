@@ -48,20 +48,20 @@ const Page: FC = ({}) => {
   };
 
   const fetch = async () => {
-    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
-    await axios
-      .get(`https://api-mogodb.onrender.com/detect_text?imageUrl=${link}`)
-      .then((rs) => {
-        dispatch(showModel({ isShowModel: false, modelChildren: null }));
-        setInfo({
-          dienthoai: rs?.data?.data.dienthoai,
-          hoten: rs?.data?.data.hoten,
-        });
-      })
-      .catch((err: AxiosError) => {
-        console.log(err);
-        dispatch(showModel({ isShowModel: false, modelChildren: null }));
-      });
+    // dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
+    // await axios
+    //   .get(`https://api-mogodb.onrender.com/detect_text?imageUrl=${link}`)
+    //   .then((rs) => {
+    //     dispatch(showModel({ isShowModel: false, modelChildren: null }));
+    //     setInfo({
+    //       dienthoai: rs?.data?.data.dienthoai,
+    //       hoten: rs?.data?.data.hoten,
+    //     });
+    //   })
+    //   .catch((err: AxiosError) => {
+    //     console.log(err);
+    //     dispatch(showModel({ isShowModel: false, modelChildren: null }));
+    //   });
   };
 
   useEffect(() => {
