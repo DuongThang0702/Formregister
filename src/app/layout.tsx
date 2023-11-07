@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Head from "next/head";
 import "@/styles/main.scss";
-
+import "react-toastify/dist/ReactToastify.css";
 export const metadata: Metadata = {
   title: "Quản lý tuyển sinh",
   icons: {

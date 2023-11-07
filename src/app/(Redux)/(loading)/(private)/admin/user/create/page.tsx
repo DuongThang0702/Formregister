@@ -2,18 +2,35 @@
 import { FC } from "react";
 import style from "@/styles/pages/_create-user.module.scss";
 import { useForm } from "react-hook-form";
-import { InputForm } from "@/components";
+import { InputForm, Loading } from "@/components";
 import { CreateUser } from "@/utils/types";
+import { apiCreateUserByAdmin } from "@/api/user";
+import { Axios, AxiosError, AxiosResponse } from "axios";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { showModel } from "@/redux/app";
 
 const Page: FC = ({}) => {
+  const dispatch = useDispatch<AppDispatch>();
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm<CreateUser>();
-  const handleCreateUser = (data: CreateUser) => {
-    console.log(data);
+  const handleCreateUser = async (data: CreateUser) => {
+    dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
+    await apiCreateUserByAdmin(data)
+      .then((rs: AxiosResponse) => {
+        if (rs.status >= 400 && rs.status <= 599)
+          toast.error(rs.data.message[0]);
+        if (rs.status >= 200 && rs.status <= 399) {
+          dispatch(showModel({ isShowModel: false, modelChildren: null }));
+          toast.success("created successfully");
+        }
+      })
+      .catch((err: AxiosError) => toast.error("something went wrong!"));
   };
   return (
     <div className={style.container}>
@@ -22,7 +39,11 @@ const Page: FC = ({}) => {
           <div className={style.title}>
             <h1>Create a user</h1>
           </div>
-          <button type="submit" className={style.button}>
+          <button
+            type="submit"
+            className={style.button}
+            disabled={!isDirty || !isValid}
+          >
             Add user
           </button>
         </div>
@@ -32,26 +53,14 @@ const Page: FC = ({}) => {
           </div>
           <div className={style.center}>
             <div className={style.container}>
-              <label className={style.label} htmlFor="username">
-                Username
+              <label className={style.label} htmlFor="email">
+                Email
               </label>
               <InputForm
                 style={style.input}
                 register={register}
                 fullW
-                id="username"
-              />
-            </div>
-            <div className={style.container}>
-              <label className={style.label} htmlFor="password">
-                Passowrd
-              </label>
-              <InputForm
-                style={style.input}
-                register={register}
-                fullW
-                id="passowrd"
-                type="password"
+                id="email"
               />
             </div>
             <div className={style.container}>
@@ -59,6 +68,7 @@ const Page: FC = ({}) => {
                 Ho ten
               </label>
               <InputForm
+                validate={{ required: "Missing input" }}
                 style={style.input}
                 register={register}
                 fullW
@@ -66,25 +76,15 @@ const Page: FC = ({}) => {
               />
             </div>
             <div className={style.container}>
-              <label className={style.label} htmlFor="heDaoTao">
-                He dao tao
+              <label className={style.label} htmlFor="sdt">
+                So dien thoai
               </label>
               <InputForm
+                validate={{ required: "Missing input" }}
                 style={style.input}
                 register={register}
                 fullW
-                id="heDaoTao"
-              />
-            </div>
-            <div className={style.container}>
-              <label className={style.label} htmlFor="nganhHoc">
-                Nganh hoc
-              </label>
-              <InputForm
-                style={style.input}
-                register={register}
-                fullW
-                id="nganhHoc"
+                id="sdt"
               />
             </div>
           </div>

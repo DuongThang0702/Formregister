@@ -35,19 +35,19 @@ const inputForm: FC<InputForm> = ({
         type === "password" ||
         type === "number" ||
         type === "date") && (
-        <>
+        <div
+          className={`${fullW && inputDefault.fullW} ${inputDefault.container}`}
+        >
           <input
             type={type}
             placeholder={placeholder}
-            className={`${style ? style : inputDefault.input} ${
-              fullW && inputDefault.fullW
-            } `}
+            className={`${style ? style : inputDefault.input} `}
             id={id}
             {...register(id, validate)}
             defaultValue={defaultValue}
           />
           {errors && <span className={inputDefault.error}>{errors}</span>}
-        </>
+        </div>
       )}
 
       {type === "textarea" && (

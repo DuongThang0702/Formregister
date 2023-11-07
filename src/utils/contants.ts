@@ -148,15 +148,19 @@ export const fieldsAdminUser = [
   },
   {
     id: 2,
-    title: "Username",
+    title: "Email",
   },
   {
     id: 3,
-    title: "Password",
+    title: "hoTen",
   },
   {
     id: 4,
     title: "Role",
+  },
+  {
+    id: 5,
+    title: "So dien thoai",
   },
 
   {

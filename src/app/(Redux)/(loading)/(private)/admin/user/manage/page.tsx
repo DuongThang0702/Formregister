@@ -46,9 +46,12 @@ const Page: FC = ({}) => {
             {users?.users.map((el) => (
               <tr key={el._id}>
                 <td>{el._id}</td>
-                <td>{el.username}</td>
-                <td>{el.password}</td>
-                <td>{el.role}</td>
+                <td>{el.email}</td>
+                <td>{el.hoTen}</td>
+                <td>
+                  {el.role === process.env.NEXT_PUBLIC_ADMIN ? "Admin" : "User"}
+                </td>
+                <td>{el.sdt}</td>
                 <td>
                   <div className={style.update}>Update</div>
                 </td>

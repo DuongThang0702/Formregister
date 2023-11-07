@@ -16,6 +16,11 @@
     font-weight: 600;
     border: none;
     cursor: pointer;
+    opacity: 100;
+    &:disabled {
+      opacity: 0;
+      cursor: default;
+    }
   }
 }
 
@@ -25,6 +30,7 @@
   margin-top: 5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: white;
+  overflow-y: scroll;
   border-radius: 1rem;
   .topInput {
     border-radius: 1rem;
@@ -39,17 +45,20 @@
     margin-top: 2rem;
     padding: 0 5rem;
     padding-bottom: 8rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
     row-gap: 3rem;
+    column-gap: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     .container {
       display: flex;
       flex-direction: column;
       row-gap: 1rem;
       .input {
         padding: 2rem 3rem;
+        width: 100%;
         border-radius: 1rem;
         outline: none;
+        font-size: $size-2xl;
       }
       .label {
         font-size: $size-xl;

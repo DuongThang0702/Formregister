@@ -2,6 +2,7 @@
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import style from "@/styles/layouts/_layoutModal.module.scss";
+import { ToastContainer } from "react-toastify";
 
 export default function ModalLayout({
   children,
@@ -17,6 +18,18 @@ export default function ModalLayout({
         <div className={style.containerWrapperModal}>{modelChildren}</div>
       )}
       {children}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 }

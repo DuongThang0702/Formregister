@@ -6,16 +6,14 @@ export type formRegister = {
 };
 
 export type Login = {
-  id: string;
+  email: string;
   password: string;
 };
 
 export type CreateUser = {
-  username: string;
-  password: string;
   hoTen: string;
-  heDaoTao: string;
-  nganhHoc: string;
+  sdt: string;
+  email: string;
 };
 
 export type Users = {
@@ -25,7 +23,7 @@ export type Users = {
 
 export type User = {
   _id: string;
-  username: string;
+  email: string;
   hoTen: string;
   heDaoTao: string;
   nganhHoc: string;
