@@ -21,8 +21,8 @@ const Page: FC = ({}) => {
     unit: "px", // Can be 'px' or '%'
     x: 0,
     y: 30,
-    width: 600,
-    height: 80,
+    width: 500,
+    height: 300,
   });
 
   const imgRef = useRef(null);
@@ -76,15 +76,17 @@ const Page: FC = ({}) => {
               setCompletedCrop(e);
             }
           }}
+          className={style.crop}
         >
-          <Image
-            src={url}
-            alt="image"
-            ref={imgRef}
-            width={1000}
-            height={1000}
-            className={style.image}
-          />
+          <div className={style.block}>
+            <Image
+              src={url}
+              alt="image"
+              ref={imgRef}
+              fill
+              objectFit="contain"
+            />
+          </div>
         </ReactCrop>
         <div onClick={download} className={style.button}>
           Submit

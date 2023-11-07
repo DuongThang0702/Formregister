@@ -8,6 +8,7 @@
   align-items: center;
   flex-direction: column;
   background-color: black;
+  overflow-y: scroll;
   .image {
     margin: auto;
     width: 80%;
@@ -25,5 +26,15 @@
     border-radius: 0.5rem;
     text-align: center;
     font-size: 2rem;
+  }
+  .crop {
+    width: 80%;
+    margin: auto;
+    height: 80%;
+    overflow-y: hidden;
+    .block {
+      width: 80vw;
+      height: 80vh;
+    }
   }
 }
