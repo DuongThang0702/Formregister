@@ -21,8 +21,8 @@ const Page: FC = ({}) => {
     unit: "px", // Can be 'px' or '%'
     x: 0,
     y: 30,
-    width: 500,
-    height: 300,
+    width: 100,
+    height: 100,
   });
 
   const imgRef = useRef(null);
@@ -83,8 +83,9 @@ const Page: FC = ({}) => {
               src={url}
               alt="image"
               ref={imgRef}
-              fill
               objectFit="contain"
+              fill
+              className={style.image}
             />
           </div>
         </ReactCrop>
