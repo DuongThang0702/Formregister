@@ -3,7 +3,11 @@ import style from "@/styles/components/admin/_header.module.scss";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { logout } from "@/redux/user";
 const Page: FC = ({}) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [isShowOption, setIsShowOption] = useState<boolean>(false);
   useEffect(() => {
     const handleShowOption = (e: MouseEvent) => {
@@ -46,7 +50,9 @@ const Page: FC = ({}) => {
                 icon={icon.faArrowRightFromBracket}
                 className={style.icon}
               />
-              <h1 className={style.text}>Đăng xuất</h1>
+              <h1 className={style.text} onClick={() => dispatch(logout())}>
+                Đăng xuất
+              </h1>
             </div>
           </div>
         )}

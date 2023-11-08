@@ -20,3 +20,6 @@ export const apiUpdateUser = (uid: string, data: object) =>
     method: "patch",
     data,
   });
+
+export const apiCreateAdmission = (data: object) =>
+  axiosClient({ url: "/admission", method: "post", data });

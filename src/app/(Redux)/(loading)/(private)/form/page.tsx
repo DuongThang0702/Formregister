@@ -14,26 +14,23 @@ import { useRouter } from "next/navigation";
 import { Routes } from "@/utils/path";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import icon from "@/utils/icon";
+import { apiCreateAdmission } from "@/api/user";
 
 const Page: FC = ({}) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { link } = useSelector((state: RootState) => state.link);
+  const { user } = useSelector((state: RootState) => state.user);
   const [info, setInfo] = useState<{
-    dienthoai?: string;
-    hoten?: string;
+    dienthoai: string;
+    hoten: string;
   }>();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<formRegister>({
-    defaultValues: {
-      name: info?.hoten,
-      phoneNumber: info?.dienthoai,
-    },
-  });
+  } = useForm<formRegister>();
   const onSubmit = async (data: formRegister) => {
     dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
     await axios
@@ -45,6 +42,16 @@ const Page: FC = ({}) => {
         router.push(`/${Routes.SYSTEM}`);
       })
       .catch((err: AxiosError) => console.log(err));
+
+    // await apiCreateAdmission(data)
+    //   .then((rs: AxiosResponse) => {
+    //     dispatch(showModel({ isShowModel: false, modelChildren: null }));
+    //     router.push(`/${Routes.SYSTEM}`);
+    //   })
+    //   .catch((err: AxiosError) => {
+    //     router.push(`/${Routes.SYSTEM}`);
+    //     console.log(err);
+    //   });
   };
 
   const fetch = async () => {
@@ -54,8 +61,8 @@ const Page: FC = ({}) => {
       .then((rs) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         setInfo({
-          dienthoai: rs?.data?.data.dienthoai,
-          hoten: rs?.data?.data.hoten,
+          dienthoai: rs?.data.dienthoai,
+          hoten: rs?.data.hoten,
         });
       })
       .catch((err: AxiosError) => {
@@ -94,7 +101,7 @@ const Page: FC = ({}) => {
               id="name"
               fullW
               placeholder="Họ và tên"
-              validate={{ required: true }}
+              validate={{ required: "Missing input" }}
               defaultValue={info?.hoten}
               errors={errors?.name?.message}
             />
@@ -103,7 +110,7 @@ const Page: FC = ({}) => {
               id="phoneNumber"
               fullW
               placeholder="Điện thoại"
-              validate={{ required: true }}
+              validate={{ required: "Missing input" }}
               defaultValue={info?.dienthoai}
               errors={errors?.phoneNumber?.message}
             />
