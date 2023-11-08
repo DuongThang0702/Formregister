@@ -51,7 +51,7 @@ const Page: FC = ({}) => {
         .post(process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE as string, formData)
         .then((rs: AxiosResponse) => {
           dispatch(showModel({ isShowModel: false, modelChildren: null }));
-          dispatch(passLink({ link: rs.data.url }));
+          dispatch(passLink({ link: rs.data.secure_url }));
           router.push(`/${Routes.FORM}`);
         })
         .catch((err: AxiosError) => {
