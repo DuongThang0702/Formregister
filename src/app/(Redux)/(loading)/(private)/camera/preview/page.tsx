@@ -20,7 +20,7 @@ const Page: FC = ({}) => {
   const router = useRouter();
   const [rotation, setRotation] = useState<number>(0);
   const [crop, setCrop] = useState<Crop>({
-    unit: "%", // Can be 'px' or '%'
+    unit: "px", // Can be 'px' or '%'
     x: 0,
     y: 30,
     width: 70,
