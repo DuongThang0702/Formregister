@@ -39,6 +39,7 @@ const Page: FC = ({}) => {
     const options = {
       maxSizeMB: 1,
       useWebWorker: true,
+      alwaysKeepResolution: true,
     };
     if (response) {
       const formData = new FormData();
