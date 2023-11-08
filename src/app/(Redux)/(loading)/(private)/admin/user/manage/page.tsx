@@ -52,8 +52,9 @@ const Page: FC = ({}) => {
                   {el.role === process.env.NEXT_PUBLIC_ADMIN ? "Admin" : "User"}
                 </td>
                 <td>{el.sdt}</td>
-                <td>
+                <td className={style.action}>
                   <div className={style.update}>Update</div>
+                  <div className={style.delete}>Delete</div>
                 </td>
               </tr>
             ))}

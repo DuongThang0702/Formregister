@@ -13,7 +13,7 @@ const Page: FC = ({}) => {
   const [Time, setTime] = useState<any>(null);
   const fetchUsers = async () => {
     await axios
-      .get(`${process.env.NEXT_PUBLIC_API_USER}/user`, {
+      .get(`${process.env.NEXT_PUBLIC_API_USER}/admission`, {
         params: {
           day: Time ? new Date(Time) : new Date(),
           page: params.get("page"),
