@@ -18,11 +18,11 @@ const Page: FC = ({}) => {
   const { url } = useSelector((state: RootState) => state.link);
   const router = useRouter();
   const [crop, setCrop] = useState<Crop>({
-    unit: "px", // Can be 'px' or '%'
+    unit: "%", // Can be 'px' or '%'
     x: 0,
     y: 30,
     width: 100,
-    height: 100,
+    height: 20,
   });
 
   const imgRef = useRef(null);
