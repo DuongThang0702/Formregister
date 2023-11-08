@@ -1,8 +1,8 @@
 export type formRegister = {
-  name: string;
-  phoneNumber: string;
-  trainingSystem: string;
-  theIndustryCares: string[];
+  hoTen: string;
+  sdt: string;
+  heDaoTao: string;
+  nganhHoc: string[];
 };
 
 export type Login = {
@@ -26,7 +26,7 @@ export type User = {
   email: string;
   hoTen: string;
   heDaoTao: string;
-  nganhHoc: string;
+  nganhHoc: string[];
   password?: string;
   sdt: string;
   role: string;

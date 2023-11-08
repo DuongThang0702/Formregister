@@ -33,25 +33,15 @@ const Page: FC = ({}) => {
   } = useForm<formRegister>();
   const onSubmit = async (data: formRegister) => {
     dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
-    await axios
-      .post(
-        `https://api-mogodb.onrender.com/insert_admission?username=${data.name}&sdt=${data.phoneNumber}&hoTen=${data.name}&heDaoTao=${data.trainingSystem}&nganhHoc=${data.theIndustryCares}`
-      )
+    await apiCreateAdmission({ ...data, email: user.email })
       .then((rs: AxiosResponse) => {
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         router.push(`/${Routes.SYSTEM}`);
       })
-      .catch((err: AxiosError) => console.log(err));
-
-    // await apiCreateAdmission(data)
-    //   .then((rs: AxiosResponse) => {
-    //     dispatch(showModel({ isShowModel: false, modelChildren: null }));
-    //     router.push(`/${Routes.SYSTEM}`);
-    //   })
-    //   .catch((err: AxiosError) => {
-    //     router.push(`/${Routes.SYSTEM}`);
-    //     console.log(err);
-    //   });
+      .catch((err: AxiosError) => {
+        router.push(`/${Routes.SYSTEM}`);
+        console.log(err);
+      });
   };
 
   const fetch = async () => {
@@ -98,21 +88,21 @@ const Page: FC = ({}) => {
           <div className={style.containerInput}>
             <InputForm
               register={register}
-              id="name"
+              id="hoTen"
               fullW
               placeholder="Họ và tên"
               validate={{ required: "Missing input" }}
               defaultValue={info?.hoten}
-              errors={errors?.name?.message}
+              errors={errors?.hoTen?.message}
             />
             <InputForm
               register={register}
-              id="phoneNumber"
+              id="sdt"
               fullW
               placeholder="Điện thoại"
               validate={{ required: "Missing input" }}
               defaultValue={info?.dienthoai}
-              errors={errors?.phoneNumber?.message}
+              errors={errors?.sdt?.message}
             />
           </div>
         </div>
@@ -123,19 +113,21 @@ const Page: FC = ({}) => {
           <div className={style.containerRadio}>
             <InputForm
               register={register}
-              id="trainingSystem"
+              id="heDaoTao"
               type="radio"
               value="CDCQ"
               content="Cao đẳng chính quy (Tốt nghiệp THPT)"
               fullW
+              errors={errors?.heDaoTao?.message}
             />
             <InputForm
               register={register}
-              id="trainingSystem"
+              id="heDaoTao"
               type="radio"
               value="CD9+"
               content="Cao đẳng 9+"
               fullW
+              errors={errors?.heDaoTao?.message}
             />
           </div>
         </div>
@@ -148,7 +140,7 @@ const Page: FC = ({}) => {
               <div key={el.id}>
                 <InputForm
                   register={register}
-                  id="theIndustryCares"
+                  id="nganhHoc"
                   type="checkbox"
                   value={el.value}
                   content={el.content}

@@ -77,7 +77,17 @@ const Page: FC = ({}) => {
                   <td className={style.td}>{el.hoTen}</td>
                   <td className={style.td}>{el.sdt}</td>
                   <td className={style.td}>{el.heDaoTao}</td>
-                  <td className={style.td}>{el.nganhHoc}</td>
+                  <td
+                    className={style.td}
+                    style={{
+                      display: "flex",
+                      columnGap: "1rem",
+                    }}
+                  >
+                    {el.nganhHoc.map((el, index) => (
+                      <li key={index}>{el},</li>
+                    ))}
+                  </td>
                 </tr>
               ))}
             </tbody>
