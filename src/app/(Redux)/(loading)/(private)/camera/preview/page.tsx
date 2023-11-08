@@ -38,14 +38,13 @@ const Page: FC = ({}) => {
     const response = await canvasPreview(imgRef.current, completedCrop);
     const options = {
       maxSizeMB: 1,
-      maxWidthOrHeight: 1920,
       useWebWorker: true,
     };
     if (response) {
       const formData = new FormData();
       dispatch(showModel({ isShowModel: true, modelChildren: <Loading /> }));
       const conpressedFile = await imageCompression(response, options);
-      formData.append("file", response);
+      formData.append("file", conpressedFile);
       formData.append("upload_preset", "form_survey");
       await axios
         .post(process.env.NEXT_PUBLIC_API_UPLOAD_IMAGE as string, formData)
