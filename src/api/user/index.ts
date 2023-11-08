@@ -13,3 +13,10 @@ export const apiCreateUserByAdmin = (data: any) =>
     method: "post",
     data,
   });
+
+export const apiUpdateUser = (uid: string, data: object) =>
+  axiosClient({
+    url: `/user/${uid}`,
+    method: "patch",
+    data,
+  });

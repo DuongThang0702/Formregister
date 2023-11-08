@@ -31,3 +31,9 @@ export type User = {
   sdt: string;
   role: string;
 };
+
+export type UpdateUserByAdmin = {
+  hoTen: string;
+  password: string;
+  role: string;
+};

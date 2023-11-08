@@ -93,7 +93,7 @@ const inputForm: FC<InputForm> = ({
             {...register(id, validate)}
             value={value}
           ></input>
-          <label htmlFor={id}>{content}</label>
+          <label>{content}</label>
           {errors && <span className={inputDefault.error}>{errors}</span>}
         </div>
       )}
