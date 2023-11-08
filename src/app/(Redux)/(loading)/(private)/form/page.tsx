@@ -59,10 +59,11 @@ const Page: FC = ({}) => {
     await axios
       .get(`https://api-mogodb.onrender.com/detect_text?imageUrl=${link}`)
       .then((rs) => {
+        console.log(rs);
         dispatch(showModel({ isShowModel: false, modelChildren: null }));
         setInfo({
-          dienthoai: rs?.data.dienthoai,
-          hoten: rs?.data.hoten,
+          dienthoai: rs?.data.data.dienthoai,
+          hoten: rs?.data.data.hoten,
         });
       })
       .catch((err: AxiosError) => {
