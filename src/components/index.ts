@@ -6,3 +6,4 @@ export { default as HeaderSystem } from "./system/header";
 export { default as SiderbarAdmin } from "./admin/sidebar";
 export { default as HeaderAdmin } from "./admin/header";
 export { default as Pagination } from "./pagination/pagination";
+export { default as Slider } from "./preview/appSlider";

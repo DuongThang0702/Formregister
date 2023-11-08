@@ -3,8 +3,15 @@
 
 .wrapper {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
+  @include respond(tab-port) {
+    overflow-y: scroll;
+  }
+
+  @include respond(phone) {
+    overflow-y: scroll;
+  }
   .containerWrapperModal {
     background-color: $blackopacity;
     position: fixed;

@@ -1,10 +1,10 @@
 "use client";
-import { Loading, useWindowSize } from "@/components";
+import { Loading, Slider, useWindowSize } from "@/components";
 import { AppDispatch, RootState } from "@/redux/store";
 import { Routes } from "@/utils/path";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useState, useRef } from "react";
+import { FC, useEffect, useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "@/styles/pages/_previewpage.module.scss";
 import ReactCrop, { Crop, PixelCrop } from "react-image-crop";
@@ -13,23 +13,27 @@ import { showModel } from "@/redux/app";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { passLink } from "@/redux/link";
 import imageCompression from "browser-image-compression";
+
 const Page: FC = ({}) => {
   const dispatch = useDispatch<AppDispatch>();
   const { url } = useSelector((state: RootState) => state.link);
   const router = useRouter();
+  const [rotation, setRotation] = useState<number>(0);
   const [crop, setCrop] = useState<Crop>({
-    unit: "px", // Can be 'px' or '%'
+    unit: "%", // Can be 'px' or '%'
     x: 0,
     y: 30,
-    width: 1000,
-    height: 50,
+    width: 70,
+    height: 10,
   });
 
   const imgRef = useRef(null);
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
-
+  const handleOnRotation = useCallback((rotationValue: number) => {
+    setRotation(rotationValue);
+  }, []);
   const download = async () => {
     const response = await canvasPreview(imgRef.current, completedCrop);
     const options = {
@@ -89,11 +93,24 @@ const Page: FC = ({}) => {
               alt="image"
               ref={imgRef}
               objectFit="contain"
+              style={{
+                transform: `rotate(${rotation}deg)`,
+              }}
               fill
-              className={style.image}
+              className={`${style.image}`}
             />
           </div>
         </ReactCrop>
+        <div>
+          <Slider
+            min={0}
+            max={360}
+            defaultValue={0}
+            value={rotation}
+            label="Rotate"
+            onChange={handleOnRotation}
+          />
+        </div>
         <div onClick={download} className={style.button}>
           Submit
         </div>

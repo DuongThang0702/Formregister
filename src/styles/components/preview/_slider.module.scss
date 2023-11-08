@@ -1,0 +1,16 @@
+@import "../../abstracts/mixins";
+@import "../../abstracts/variables";
+
+.wrapper {
+  width: 80vw;
+  height: 100%;
+  background-color: white;
+  padding: 0 4rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+}
