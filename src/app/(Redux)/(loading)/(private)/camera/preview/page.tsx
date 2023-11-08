@@ -39,7 +39,7 @@ const Page: FC = ({}) => {
     const options = {
       maxSizeMB: 1,
       useWebWorker: true,
-      alwaysKeepResolution: true,
+      maxWidthOrHeight: 1920,
     };
     if (response) {
       const formData = new FormData();
@@ -92,11 +92,11 @@ const Page: FC = ({}) => {
               src={url}
               alt="image"
               ref={imgRef}
-              objectFit="contain"
               style={{
                 transform: `rotate(${rotation}deg)`,
               }}
-              fill
+              height={1000}
+              width={1000}
               className={`${style.image}`}
             />
           </div>

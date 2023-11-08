@@ -70,6 +70,7 @@ export async function canvasPreview(
 
   ctx.restore();
   const base64 = canvas.toDataURL();
+  console.log(base64);
   return await dataUrlToFile(base64, randomString);
 }
 
