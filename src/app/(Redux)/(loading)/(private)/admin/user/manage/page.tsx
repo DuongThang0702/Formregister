@@ -9,6 +9,13 @@ import { InputForm, SelectForm } from "@/components";
 import { apiUpdateUser } from "@/api/user";
 import { toast } from "react-toastify";
 
+type update = {
+  hoTen: string;
+  password?: string;
+  sdt: string;
+  role: string;
+};
+
 const Page: FC = ({}) => {
   const [edit, setEdit] = useState<User | null>(null);
   const [users, setUsers] = useState<Users | null>(null);
@@ -18,7 +25,7 @@ const Page: FC = ({}) => {
     handleSubmit,
     watch,
     formState: { errors, isDirty, isValid },
-  } = useForm<User>();
+  } = useForm<update>();
   const render = () => setUpdate((prev) => !prev);
   const fetchAllUser = async () => {
     await axios
@@ -29,7 +36,9 @@ const Page: FC = ({}) => {
       })
       .catch((err) => console.log(err));
   };
-  const handleUpdateUserByAdmin = async (data: User) => {
+  const handleUpdateUserByAdmin = async (data: update) => {
+    console.log(data);
+
     await apiUpdateUser(edit?._id!, data)
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599)
@@ -83,13 +92,13 @@ const Page: FC = ({}) => {
                 <tr key={el._id}>
                   <td>{el._id}</td>
                   <td>{el.email}</td>
-                  <td style={{ width: "20%" }}>
+                  <td>
                     {edit?._id === el._id ? (
                       <InputForm
                         defaultValue={edit.hoTen}
                         register={register}
                         validate={{ required: "require fill" }}
-                        id="email"
+                        id="hoTen"
                       />
                     ) : (
                       el.hoTen
@@ -113,6 +122,18 @@ const Page: FC = ({}) => {
                       "Admin"
                     ) : (
                       "User"
+                    )}
+                  </td>
+                  <td style={{ width: "20%" }}>
+                    {edit?._id === el._id ? (
+                      <InputForm
+                        defaultValue={edit.password}
+                        register={register}
+                        validate={{ required: "require fill" }}
+                        id="password"
+                      />
+                    ) : (
+                      el.password
                     )}
                   </td>
                   <td>

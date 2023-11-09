@@ -159,12 +159,16 @@ export const fieldsAdminUser = [
     title: "Role",
   },
   {
+    id: 6,
+    title: "Password",
+  },
+  {
     id: 5,
     title: "So dien thoai",
   },
 
   {
-    id: 6,
+    id: 7,
     title: "Action",
     center: true,
   },
