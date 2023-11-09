@@ -88,19 +88,19 @@ export const tabSystem = [
     id: 1,
     icon: icon.faNewspaper,
     title: "Thu thập hồ sơ",
-    path: `/${Routes.CAMERA}`,
+    path: `/${Routes.FORM}`,
   },
   {
     id: 2,
     icon: icon.faPhoneVolume,
     title: "Tư vấn",
-    path: `/${Routes.CAMERA}`,
+    path: `/`,
   },
   {
     id: 3,
     icon: icon.faSchool,
     title: "Nhập học",
-    path: `/${Routes.CAMERA}`,
+    path: `/`,
   },
   {
     id: 4,

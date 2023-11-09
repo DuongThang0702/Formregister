@@ -6,16 +6,26 @@
   .logo {
     padding: 2rem;
   }
-  .back {
+  .topHeader {
     position: absolute;
     display: flex;
-    column-gap: 1rem;
-    font-size: $size-3xl;
-    align-items: center;
     top: 2rem;
-    left: 3rem;
-    color: gray;
-    cursor: pointer;
+    width: 100%;
+    padding: 0 4rem;
+    justify-content: space-between;
+    .back {
+      display: flex;
+      column-gap: 1rem;
+      font-size: $size-3xl;
+      align-items: center;
+      color: gray;
+      cursor: pointer;
+    }
+    .camera {
+      font-size: $size-3xl;
+      cursor: pointer;
+      color: gray;
+    }
   }
   .formRegister {
     position: relative;

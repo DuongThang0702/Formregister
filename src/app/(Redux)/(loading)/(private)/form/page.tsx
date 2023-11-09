@@ -71,12 +71,17 @@ const Page: FC = ({}) => {
         <div className={style.logo}>
           <Image src={"/logo.png"} height={1000} width={1000} alt="logo" />
         </div>
-        <div
-          className={style.back}
-          onClick={() => router.push(`/${Routes.SYSTEM}`)}
-        >
-          <FontAwesomeIcon icon={icon.faArrowLeftLong} />
-          Back
+        <div className={style.topHeader}>
+          <div
+            className={style.back}
+            onClick={() => router.push(`/${Routes.SYSTEM}`)}
+          >
+            <FontAwesomeIcon icon={icon.faArrowLeftLong} />
+            Back
+          </div>
+          <div onClick={() => router.push(`/${Routes.CAMERA}`)}>
+            <FontAwesomeIcon icon={icon.faCamera} className={style.camera} />
+          </div>
         </div>
         <div className={style.title}>Khảo sát môn học</div>
       </div>
