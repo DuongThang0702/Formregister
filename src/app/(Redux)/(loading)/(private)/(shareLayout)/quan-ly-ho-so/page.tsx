@@ -11,6 +11,7 @@ const Page: FC = ({}) => {
   const params = useSearchParams();
   const [users, setUsers] = useState<Users | null>(null);
   const [Time, setTime] = useState<any>(null);
+
   const fetchUsers = async () => {
     await axios
       .get(`${process.env.NEXT_PUBLIC_API_USER}/admission`, {

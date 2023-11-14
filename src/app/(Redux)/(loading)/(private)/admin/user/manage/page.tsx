@@ -37,8 +37,6 @@ const Page: FC = ({}) => {
       .catch((err) => console.log(err));
   };
   const handleUpdateUserByAdmin = async (data: update) => {
-    console.log(data);
-
     await apiUpdateUser(edit?._id!, data)
       .then((rs: AxiosResponse) => {
         if (rs.status >= 400 && rs.status <= 599)

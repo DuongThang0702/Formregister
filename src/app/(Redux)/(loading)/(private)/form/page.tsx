@@ -68,8 +68,11 @@ const Page: FC = ({}) => {
   return (
     <div className={style.container}>
       <div className={style.top}>
-        <div className={style.logo}>
-          <Image src={"/logo.png"} height={1000} width={1000} alt="logo" />
+        <div
+          className={style.logo}
+          onClick={() => router.push(`/${Routes.CAMERA}`)}
+        >
+          <FontAwesomeIcon icon={icon.faCamera} className={style.camera} />
         </div>
         <div className={style.topHeader}>
           <div
@@ -78,9 +81,6 @@ const Page: FC = ({}) => {
           >
             <FontAwesomeIcon icon={icon.faArrowLeftLong} />
             Back
-          </div>
-          <div onClick={() => router.push(`/${Routes.CAMERA}`)}>
-            <FontAwesomeIcon icon={icon.faCamera} className={style.camera} />
           </div>
         </div>
         <div className={style.title}>Khảo sát môn học</div>
